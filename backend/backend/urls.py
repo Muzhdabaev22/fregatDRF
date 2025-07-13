@@ -22,6 +22,6 @@ from home.views import BlogAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/blog', BlogAPIView.as_view()),
+    path('', include('home.urls')),
     path("ckeditor5/", include('django_ckeditor_5.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

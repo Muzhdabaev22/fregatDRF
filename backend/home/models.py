@@ -3,7 +3,7 @@ from django_ckeditor_5.fields import CKEditor5Field
 
 class PostBlog(models.Model):
     title = models.CharField(max_length=300)
-    url = models.SlugField()
+    url = models.SlugField(unique=True)
     text = CKEditor5Field("Текст", config_name='extends')
     img = models.ImageField("Изображение")
     created_at = models.DateTimeField(auto_now_add=True)
