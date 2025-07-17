@@ -1,0 +1,35 @@
+$font-path: '../assets/fonts';
+
+@font-face {
+    font-family: 'mns-bold';
+    src: url('#{$font-path}/Montserrat-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'mns-light';
+    src: url('#{$font-path}/Montserrat-light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'everlasting';
+    src: url('#{$font-path}/Everlasting.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'myriad';
+    src: url('#{$font-path}/Myriad_Pro.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'mnd';
+    src: url('#{$font-path}/Mont-Heavy-DEMO.ttf') format('truetype');
+}
+
+$mns-bold-font: 'mns-bold', sans-serif;
+$mns-light-font: 'mns-light', sans-serif;
+$everlasting-font: 'everlasting', sans-serif;
+$myriad-font: 'myriad', sans-serif;
+$mnd-font: 'mnd', sans-serif;
+
+$yellow-color: #FAE300;
+$brown-font-color: #875216;
