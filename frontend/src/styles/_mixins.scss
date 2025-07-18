@@ -10,3 +10,43 @@
     transition: 1s;
     z-index: 1;
 }
+
+@mixin vocabulary_line_mixin {
+    margin: 5px 5px 3px;
+    font-size: 18px;
+    line-height: 1.4;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    label {
+        position: relative;
+        padding-left: 30px;
+        min-height: 20px;
+        line-height: 20px;
+
+        &::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 36%;
+            background-color: #f9f985;
+            border: 1px solid #000;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+        }
+    }
+
+    input[type="checkbox"] {
+        display: none;
+
+        &:checked + label::before {
+            content: '\2713';
+            font-size: 19px;
+            color: #000;
+        }
+    }
+}
