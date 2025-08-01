@@ -1,0 +1,68 @@
+@use '../../styles/mixins' as *;
+@use '../../styles/vars' as *;
+
+.section {
+    display: flex;
+    height: auto;
+    width: 100%;
+
+    .text_section_div {
+
+        margin-top: 300px;
+        margin-left: 220px;
+        width: 100%;
+
+        .circle {
+            @include circle_mixin;
+        }
+
+        .h1_text_section {
+            font-family: $everlasting_font;
+            font-size: 5vw;
+            line-height: 110.4px;
+            color: rgb(135, 82, 22, 100%);
+            position: absolute;
+        }
+
+        .line {
+            position: absolute;
+            margin-top: 171px;
+            margin-left: 349px;
+            z-index: -1;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .other_text {
+            font-size: 2.5vw;
+            color: #EE9FA5;
+            padding-top: 270px;
+            font-family: $mns-bold-font;
+        }
+
+        .p_section {
+            font-family: $mns-light-font;
+            font-size: 24px;
+            line-height: 40.8px;
+            max-width: 900px;
+            padding-top: 20px;
+        }
+
+        .button_contact {
+            @include contact_button_mixin;
+        }
+    }
+
+    .section_img {
+        width: 50%;
+        display: flex;
+        justify-content: end;
+        z-index: 0;
+
+        img {
+            position: absolute;
+            width: 100%;
+            max-width: 750px;
+        }
+    }
+}
