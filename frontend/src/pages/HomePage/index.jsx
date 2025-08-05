@@ -15,7 +15,7 @@ export const HomePage = () => {
                     <p className={css.other_text}>все языки в одном месте</p>
                     <p className={css.p_section}>Забудь о языке жестов и онлайн-переводчиках!</p>
                     <a href="#win1" className={css.button_contact}>
-                        <button className={css.one_main_section_button}>ЗАПИСАТЬСЯ</button>
+                        <button>ЗАПИСАТЬСЯ</button>
                     </a>
                 </div>
 

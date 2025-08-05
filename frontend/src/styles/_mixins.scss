@@ -1,5 +1,6 @@
 @use './vars' as *; 
 
+// Базовые миксины
 @mixin line-section {
     height: 22px;
     width: 100%;
@@ -9,6 +10,83 @@
     opacity: 1;
     transition: 1s;
     z-index: 1;
+}
+
+// Миксин для hover линий с параметрами
+@mixin hover-line($margin-top, $height, $width, $margin-left: 0) {
+    position: absolute;
+    margin-top: $margin-top;
+    height: $height;
+    width: $width;
+    z-index: -1;
+    opacity: 0;
+    @if $margin-left != 0 {
+        margin-left: $margin-left;
+    }
+}
+
+// Миксин для кнопок
+@mixin button-base {
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: $mns-bold-font;
+}
+
+@mixin button-variant($bg-color, $text-color, $hover-bg: null, $hover-text: null) {
+    background-color: $bg-color;
+    color: $text-color;
+    
+    @if $hover-bg {
+        &:hover {
+            background-color: $hover-bg;
+            @if $hover-text {
+                color: $hover-text;
+            }
+        }
+    }
+}
+
+// Миксин для инпутов
+@mixin input-base {
+    font-family: $mns-light-font;
+    background-color: transparent;
+    border: 1px solid $yellow-color;
+    border-radius: 100px;
+    padding: 10px 15px;
+}
+
+// Миксин для форм
+@mixin form-container {
+    background: #fafee7;
+    border-radius: 20px;
+    padding: 20px;
+    transition: 0.9s;
+}
+
+// Миксин для анимаций
+@mixin fade-animation {
+    @keyframes fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @-webkit-keyframes fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @-moz-keyframes fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+}
+
+// Миксин для трансформаций
+@mixin scale-transform($scale: 0.85) {
+    -webkit-transform: scale($scale);
+    -moz-transform: scale($scale);
+    -ms-transform: scale($scale);
+    transform: scale($scale);
 }
 
 @mixin vocabulary_line_mixin {
@@ -49,4 +127,22 @@
             color: #000;
         }
     }
+}
+
+@mixin circle_mixin {
+    position: absolute;
+    margin-top: 8px;
+    margin-left: -17px;
+    z-index: 0;
+    width: 100%;
+    max-width: 40px;
+}
+
+@mixin contact_button_mixin {
+    margin: 40px 10px 0 10px;
+    @include button-base;
+    @include button-variant($button-yellow, $button-brown, $pink-color, white);
+    padding: 20px 30px;
+    font-size: 19px;
+    box-shadow: 5px 5px 12px -4px #0000007a;
 }

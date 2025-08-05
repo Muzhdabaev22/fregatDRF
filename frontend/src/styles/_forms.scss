@@ -1,0 +1,135 @@
+@use './_vars.scss' as *;
+@use './_mixins.scss' as *;
+
+// Общие стили для форм
+.form-container {
+    @include form-container;
+    max-width: 374px;
+    width: 100%;
+    z-index: 9999;
+    position: absolute;
+    margin-left: -289px;
+    margin-top: 23px;
+    height: auto;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 310px;
+        top: -40px;
+        border: 20px solid transparent;
+        border-bottom: 20px solid $form-bg;
+    }
+}
+
+.form-title {
+    font-family: $mns-bold-font;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.form-input {
+    width: 328px;
+    @include input-base;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.form-input-secondary {
+    width: 100%;
+    padding: 15px 5px;
+    font-size: 18px;
+    margin-bottom: 30px;
+    @include input-base;
+    border-radius: 20px;
+}
+
+.form-button {
+    width: 328px;
+    @include button-base;
+    @include button-variant($light-yellow, inherit, $pink-color, white);
+    font-family: $mns-light-font;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 80px;
+    height: auto;
+}
+
+.form-button-secondary {
+    margin: 20px 0 10px;
+    padding: 15px 50px;
+    @include button-base;
+    @include button-variant($yellow-color, $button-brown);
+    @include scale-transform;
+    width: 100%;
+
+    &:hover {
+        border-color: $yellow-color;
+        color: #fff;
+        @include scale-transform(1);
+    }
+}
+
+.form-mail {
+    display: flex;
+    margin-top: 10px;
+
+    img {
+        width: 20px;
+        height: 20px;
+        padding-right: 5px;
+    }
+}
+
+.form-mail-text {
+    font-family: $mns-light-font;
+    font-size: 18px;
+}
+
+.form-social {
+    display: flex;
+    justify-content: center;
+
+    img {
+        width: auto;
+        height: 25px;
+        margin-right: 20px;
+    }
+}
+
+// Стили для чекбоксов
+.checkbox-line {
+    @include vocabulary_line_mixin;
+}
+
+.checkbox-label {
+    cursor: pointer;
+    font-family: $mns-light-font;
+    font-size: 14px;
+}
+
+// Стили для уведомлений
+.success-notification {
+    color: #28a745;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.error-notification {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+} 

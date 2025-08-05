@@ -12,7 +12,7 @@ $font-path: '../assets/fonts';
 
 @font-face {
     font-family: 'everlasting';
-    src: url('#{$font-path}/Everlasting.ttf') format('truetype');
+    src: url('../assets/fonts/Everlasting.ttf') format('truetype');
 }
 
 @font-face {
@@ -31,5 +31,12 @@ $everlasting-font: 'everlasting', sans-serif;
 $myriad-font: 'myriad', sans-serif;
 $mnd-font: 'mnd', sans-serif;
 
+// Цвета
 $yellow-color: #FAE300;
 $brown-font-color: #875216;
+$pink-color: #f8abbf;
+$light-yellow: #fae3008c;
+$form-bg: #fafee7;
+$checkbox-bg: #f9f985;
+$button-yellow: #FEEB8F;
+$button-brown: #996632;
