@@ -333,3 +333,16 @@
         }
     }
 }
+
+// Стили для уведомлений
+.success_notification {
+    @include success-notification;
+}
+
+.error_notification {
+    @include error-notification;
+}
+
+.error {
+    @include error-message;
+}

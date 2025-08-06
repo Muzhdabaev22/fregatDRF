@@ -7,7 +7,7 @@ $font-path: '../assets/fonts';
 
 @font-face {
     font-family: 'mns-light';
-    src: url('#{$font-path}/Montserrat-Light.ttf') format('truetype');
+    src: url('../assets/fonts/Montserrat-Light.ttf') format('truetype');
 }
 
 @font-face {
@@ -33,6 +33,8 @@ $mnd-font: 'mnd', sans-serif;
 
 // Цвета
 $yellow-color: #FAE300;
+$orange-color: #efb341;
+$green-color: #B7DC99;
 $brown-font-color: #875216;
 $pink-color: #f8abbf;
 $light-yellow: #fae3008c;

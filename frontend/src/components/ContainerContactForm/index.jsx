@@ -1,7 +1,7 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useEffect } from 'react';
-// import { sendContactForm } from '../../api/api';
+import { sendContactForm } from '../../api/api';
 
 
 export const ContainerConctactForm = ({children, onSuccess}) => {
@@ -20,7 +20,7 @@ export const ContainerConctactForm = ({children, onSuccess}) => {
                 throw new Error('Заполните все поля');
                 }
                 
-                // await sendContactForm(values); 
+                await sendContactForm(values); 
                 console.log("values", values);
                 
                 resetForm({

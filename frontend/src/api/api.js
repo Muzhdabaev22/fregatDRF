@@ -8,3 +8,15 @@ export const apiClient = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+
+export const sendContactForm = async (values) => {
+    try {
+        const response = await apiClient.post('contact/', values)
+        console.info("response", response);
+        return true
+    } catch (error) {
+        console.error("error", error);
+        return false
+    }
+};

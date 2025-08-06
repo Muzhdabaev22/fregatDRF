@@ -108,28 +108,3 @@
     font-family: $mns-light-font;
     font-size: 14px;
 }
-
-// Стили для уведомлений
-.success-notification {
-    color: #28a745;
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.error-notification {
-    color: #dc3545;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 10px;
-}
-
-.error-message {
-    color: #dc3545;
-    font-size: 14px;
-    margin-top: 5px;
-} 
