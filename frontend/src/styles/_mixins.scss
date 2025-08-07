@@ -215,3 +215,10 @@
     margin-top: 30px;
     line-height: 1.2;
 }
+
+@mixin price-text-block-mixin {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

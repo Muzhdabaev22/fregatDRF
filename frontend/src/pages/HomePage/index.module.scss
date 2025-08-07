@@ -12,10 +12,6 @@
         margin-left: 220px;
         width: 100%;
 
-        .circle {
-            @include circle_mixin;
-        }
-
         .h1_text_section {
             font-family: $everlasting-font;
             font-size: 5vw;
@@ -78,6 +74,18 @@
     }
 }
 
+.line_section_green {
+    @include line-section;
+    background: $green-color;
+    margin-top: 30px;
+
+}
+
+.line_section_yellow {
+    @include line-section;
+    background: $yellow-color;
+    margin-top: 30px;
+}
 
 .line_section_pink {
     @include line-section;
@@ -103,7 +111,7 @@
         flex-wrap: wrap;
 
         .home_card {
-            max-width: 323px;
+            max-width: 353px;
             padding: 0px 10px 80px 20px;   
             border-radius: 10px;      
             box-shadow: 0px 0px 20px 1px $pink-color;                                                                                            
@@ -113,22 +121,77 @@
             background-color: rgba(249, 227, 141, 0.85); 
         }
         
+        .orange_card {
+            background-color: #fdd66d;
+        }        
+
+        .white_card {
+            background-color: $form-bg;
+        }
+
+        .green_card {
+            background-color: $green-color;
+            padding-right: 20px;
+            height: 85%;
+            margin-top: 20px;
+        }
+
         .pink_card {
             background-color: $pink-color;
         }
 
-        .li_arrow {
-            @include description-text-mixin;
-            font-family: $mns-light-font;
-            list-style-image: url("../../assets/images/li_arrow.png");
+        .loop_left {
+            position: absolute;
+            margin-top: 29px;
+            margin-left: 314px;
         }
         
-        .li_arrow_yellow {
-            @include description-text-mixin;
-            font-family: $mns-light-font;
-            list-style-image: url("../../assets/images/li_arrow_yellow.png");
+        
+        .loop_right {
+            position: absolute;
+            margin-top: 29px;
+            margin-left: 686px;
         }
 
+        .text_feedback {
+            position: absolute;
+            width: 588px;
+            margin-top: 20px;
+            margin-left: 45px;
+        }
+        
+        .bg_feedback {
+            width: 100%;
+            height: 391px;
+        }
+        
+        .bg_feedback_mbl {
+            display: none;
+        }
+    }
+
+    .li_arrow {
+        @include description-text-mixin;
+        font-family: $mns-light-font;
+        list-style-image: url("../../assets/images/li_arrow.png");
+    }
+    
+    .li_arrow_yellow {
+        @include description-text-mixin;
+        font-family: $mns-light-font;
+        list-style-image: url("../../assets/images/li_arrow_yellow.png");
+    }
+
+    .li_arrow_description {
+        @include description-text-mixin;
+        font-family: $mns-light-font;
+        list-style-image: url("../../assets/images/li_arrow.png");
+        margin-top: 0px;
+    }
+
+    .description_text {
+        @include description-text-mixin;
+        font-family: $mns-light-font;
     }
 
     .text_price {
@@ -139,21 +202,47 @@
     .container_content {
         width: 1100px;     
 
+        .price_full_two {
+            display: flex;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            margin-left: 40px;
+
+            .price_text_block_two {
+                @include price-text-block-mixin;
+                padding-right: 140px;
+                padding-left: 30px;
+                
+                .price_title_two {
+                    @include price-title-mixin;
+                    padding-left: 0px;
+                }
+
+                .text_price {
+                    @include description-text-mixin;
+                }
+            }
+        }
+
+        .price_text_li_yellow {
+            font-family: $mns-light-font;
+            font-size: 21px;
+            list-style-image: url("../../assets/images/li_yellow.png");
+            line-height: 1.2;
+        }
+
+        .price_text_li_block {
+            margin-top: 30px;
+        }
+
         .price_full {
             display: flex;
             padding-top: 20px;
             padding-bottom: 20px;
 
-            .bg_img {
-                max-width: 420px;
-            }
-
             .price_text_block { 
-                width: 100%;
+                @include price-text-block-mixin;
                 padding-left: 60px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
 
                 .circle_two {
                     @include circle_mixin;
@@ -162,11 +251,6 @@
 
                 .price_title {
                     @include price-title-mixin;
-
-                }
-
-                .price_text_li_block {
-                    margin-top: 30px;
                 }
 
                 .price_text_li {
@@ -175,59 +259,101 @@
                     list-style-image: url("../../assets/images/li.png");
                     line-height: 1.2;
                 }
-
-                .duration_price_block {
-                    margin-top: 30px;
-                }
-
-                .duration_price {
-                    font-family: $mns-bold-font;
-                    font-size: 21px;
-                    color: $brown-font-color;
-                }
-
-                .price_and_button {
-                    display: flex;
-                    
-                    .price_bottom_text {
-                        font-family: $mnd-font;
-                        font-size: 40px;
-                        color: $green-color;
-                        font-weight: bold;
-
-                        span {
-                            font-family: $mns-bold-font;
-                            font-size: 14px;
-                            color: $green-color;
-                            margin-top: -6px;
-                            position: absolute;
-                        }
-                    }
-
-                    .price_button {
-                        margin-top: 24px;
-                        margin-left: 57px;
-                        margin-right: 10px;
-                        background-color: rgba(249, 227, 141, 0.85);
-                        border: none;
-                        border-radius: 100px;
-                        padding-left: 25px;
-                        padding-right: 25px;
-                        padding-top: 10px;
-                        padding-bottom: 10px;
-                        font-family: $mns-bold-font;
-                        font-size: 19px;
-                        color: $brown-font-color;
-                        cursor: pointer;
-
-                        &:hover {
-                            background-color: $pink-color;
-                            color: white;
-                            transition: 0.7s;
-                        }
-                    }
-                }
             }
+        }
+
+        .price_and_button {
+            display: flex;
+            
+            .price__ot {
+                font-family: $mns-bold-font;
+                font-size: 14px;
+                color: $green-color;
+                padding-top: 25px;
+                padding-right: 5px;
+            }
+
+            .price_bottom_text {
+                font-family: $mnd-font;
+                font-size: 40px;
+                color: $green-color;
+                font-weight: bold;
+
+                span {
+                    font-family: $mns-bold-font;
+                    font-size: 14px;
+                    color: $green-color;
+                    margin-top: -6px;
+                    position: absolute;
+                }
+                
+            }
+
+        }
+
+        .price_button {
+            margin-top: 24px;
+            margin-left: 57px;
+            margin-right: 10px;
+            background-color: rgba(249, 227, 141, 0.85);
+            border: none;
+            border-radius: 100px;
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-family: $mns-bold-font;
+            font-size: 19px;
+            color: $brown-font-color;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $pink-color;
+                color: white;
+                transition: 0.7s;
+            }
+        }
+
+        .duration_price_block {
+            margin-top: 30px;
+        }
+
+        .duration_price {
+            font-family: $mns-bold-font;
+            font-size: 21px;
+            color: $brown-font-color;
+        }
+
+        .bg_img {
+            max-width: 420px;
+        }
+
+        .bg7_img {
+            max-width: 720px;
+            max-height: 656px;
+            height: 480px;
+            padding-left: 50px;
+        }
+        
+        .price_text_block_bottom {
+            width: 100%;
+            padding-left: 145px;
+        }
+
+        .price_title_bottom {
+            font-family: $mns-bold-font;
+            font-size: 23px;
+            line-height: 1.2;   
+            color: $brown-font-color;
+        }
+        
+        .text_price_bottom {
+            @include description-text-mixin;
+            font-family: $mns-light-font;
+        }
+
+        .text_price_bottom_span {
+            font-family: $mns-bold-font;
         }
     }
     
@@ -287,7 +413,27 @@
         }
     }
 
-    
+    .container_groups_card {
+        display:flex;
+        margin-top: 30px;
+        margin-bottom: 60px;
+        background-color: $button-yellow;
+        border-radius: 20px;
+        justify-content: space-between;
+
+        .group_card_description {
+            width: 45%;
+            padding: 0px 20px 40px 20px;    
+        }
+
+        .middle_group_card {
+            background-color: $pink-color;
+            width: 10px;
+            height: 80%;
+            align-self:center; 
+        }
+    }
+
     .arrow_block {
         margin-top: 36px;
 
@@ -326,3 +472,6 @@
     }
 }
 
+.circle {
+    @include circle_mixin;
+}
