@@ -200,7 +200,7 @@
     }
 
     .container_content {
-        width: 1100px;     
+        @include container-content-mixin;    
 
         .price_full_two {
             display: flex;
@@ -437,17 +437,7 @@
     .arrow_block {
         margin-top: 36px;
 
-        .arrow_title {
-            font-family: $mns-bold-font;
-            font-size: 27px;
-            color: black
-        }
-
-        .arrow {
-            margin-top: 20px;
-            max-width: 35px;
-            width: 100%;
-        }        
+        @include arrow-block-mixin;
     }   
 
     .anim_arrow {
@@ -457,18 +447,6 @@
         -webkit-animation: bounce-down 1.6s linear infinite;
         animation: bounce-down 1.6s linear infinite;
         margin-left: 60px;
-    }
-
-    @keyframes bounce-down {
-        25% {
-            transform: translateY(-10px);
-        }
-        50%, 100% {
-            transform: translateY(0);
-        }
-        75% {
-            transform: translateY(4px);
-        }
     }
 }
 

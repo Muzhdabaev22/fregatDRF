@@ -1,0 +1,250 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.blog_header_container {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    padding-top: 100px;
+
+    .container_content {
+        @include container-content-mixin;
+
+        .blog_block_text_header {
+            margin-top: 45px;
+            margin-left: 45px;
+
+            .circle {
+                @include circle-mixin;
+            }
+            
+            .blog_header_title {
+                font-family: $everlasting-font;
+                font-size: 4vw;
+                line-height: 110.4px;
+                color: rgb(135, 82, 22, 100%);
+                z-index: 1;
+                position: relative; 
+            }
+            
+            .arrow_block {   
+                line-height: 1.2;     
+                @include arrow-block-mixin;
+            }     
+
+            .text_description {
+                @include description-text-mixin;
+                font-family: $mns-light-font;
+            }
+
+            .text_description_li_block {
+                margin-top: 30px;
+                list-style: none;
+
+                .price_text_li {
+                    font-family: $mns-light-font;
+                    font-size: 21px;
+                    list-style-image: url("../../assets/images/li.png");
+                    line-height: 1.2;
+                }
+            }
+
+            .img_bg_top {
+                display: flex;
+                justify-content: end;
+                position: relative;
+                margin-top: -265px;
+                padding-right: 65px;
+                -webkit-animation: bounce-down 1.6s linear infinite;
+                animation: bounce-down 1.6s linear infinite;
+            
+                img {
+                    max-width: 400px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.line_section_pink {
+    @include line-section;
+    background: $pink-color;
+    margin-top: 30px;
+}
+
+.main_blog {
+    padding-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    margin: 0 20px;
+
+    .posts_div {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        margin-top: 60px;
+        gap: 30px;
+
+
+        .blog_card {
+            position: relative;
+            max-width: 350px; 
+            transition: all 0.3s ease;
+            border-radius: 33px;
+            border: 25px solid $button-yellow;
+            box-shadow: 0px 0px 20px 1px $pink-color;
+            margin-top: 100px;
+            z-index: 11;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: -25px;
+                left: -25px;
+                right: -25px;
+                bottom: -25px;
+                border: 25px solid $button-yellow;
+                border-radius: 33px;
+                z-index: 11;
+                pointer-events: none;
+            }
+
+            .blog_img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                display: block;
+            }
+
+            .blog_title {
+                z-index: -1;
+                position: absolute;
+                bottom: -194px;
+                left: 50%;
+                transform: translate(-50%, -100%); 
+                background-color: #fff8f0; 
+                padding: 10px 20px;
+                padding-top: 75px;
+                transition: transform 0.3s ease; 
+                text-decoration: none;
+                color: #000;
+                font-family: $mnd-font;
+                width: 90%;
+                height: auto;
+                min-height: 65px;
+                border-radius: 30px;
+                text-align: center;
+                font-size: 18px;
+                box-shadow: 0px 0px 22px 0px rgba(34, 60, 80, 0.2);
+            }
+
+            &:hover {
+                .blog_title {
+                    transform: translate(-50%, -95%); 
+                }
+            } 
+        }
+    }
+}
+
+
+.dm_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+    padding: 20px;
+
+    .dm_table {
+        display: table;
+        width: 100%;
+        height: 100%;
+
+        .dm_cell {
+            display: table-cell;
+            padding: 0 1em;
+            vertical-align: middle;
+            text-align: center;
+
+            .dm_modal2 {
+                display: inline-block;
+                padding: 30px;
+                max-width: 60em;
+                background-color: #fff8f0;
+                box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.22), 0px 19px 60px rgba(0, 0, 0, 0.3);
+                color: #cfd8dc;
+                text-align: left;
+                width: auto;
+                border-radius: 10px;
+                overflow-wrap: anywhere;
+                position: relative; // Добавляем position: relative для абсолютного позиционирования кнопки
+    
+                .modal_title {
+                    font-size: 22px;
+                    padding-top: 30px;
+                    padding-bottom: 30px;
+                    color: #666363;
+                }
+                
+                p {
+                    font-size: 20px;
+                    padding-top: 7px;
+                    padding-bottom: 7px;
+                    color: #666363;
+                    
+                    a {
+                        font-size: 20px;
+                        text-decoration:underline;
+                        color: #666363;
+                    }
+                }
+
+                .close {
+                    z-index: 9999;
+                    float: right;
+                    width: 30px;
+                    height: 30px;
+                    color: #cfd8dc;
+                    text-align: center;
+                    text-decoration: none;
+                    line-height: 26px;
+                    cursor: pointer;
+                    background: none;
+                    border: none;
+                    position: absolute;
+                    top: 0px;
+                    right: 25px;
+                    outline: none;
+
+                    &:after {
+                        display: block;
+                        border: 2px solid #cfd8dc;
+                        border-radius: 50%;
+                        content: 'X';
+                        transition: all 0.6s;
+                        @include scale-transform;
+                        margin-top: 6px;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 26px;
+                    }
+
+                    &:hover:after {
+                        border-color: $yellow-color;
+                        color: $yellow-color;
+                        @include scale-transform(1);
+                    }
+                }
+            }
+        }
+    }
+}
+

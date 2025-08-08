@@ -13,10 +13,20 @@ export const apiClient = axios.create({
 export const sendContactForm = async (values) => {
     try {
         const response = await apiClient.post('contact/', values)
-        console.info("response", response);
         return true
     } catch (error) {
         console.error("error", error);
         return false
     }
 };
+
+
+export const getBlogPosts = async (page = 1, pageSize = 12) => {
+    try {
+        const response = await apiClient.get(`blog/?page=${page}&page_size=${pageSize}`)
+        return response.data
+    } catch (error) {
+        console.error("error", error);
+        return false
+    }
+}

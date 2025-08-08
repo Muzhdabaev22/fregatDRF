@@ -1,0 +1,61 @@
+@use '../../styles/vars' as *; 
+@use '../../styles/mixins' as *; 
+
+.footer {
+    max-height: 331px;
+    height: 100%;
+    width: 100%;
+    background-color: $green-color;
+    display: flex;
+    justify-content: center;
+    padding-top: 55px;
+    padding-bottom: 50px;
+
+    .container_footer {
+        width: 1110px;
+        display: flex;
+        align-items: center;
+
+        .footer_links {
+            display: grid;
+
+            .link_footer {
+                font-family: $myriad-font;
+                font-size: 23px;
+                line-height: 1.2;
+                color: white;
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+
+        .footer_info {
+            display: grid;
+            margin-left: auto;
+
+            .social_media_icons {
+                display: flex;
+
+                .icon_soc {
+                    padding-right: 15px;
+                    width: auto;
+                    height: auto;
+                }
+            }
+        }
+
+        .footer_text {
+            width: 255px;
+            color: #fff;
+            padding-top: 15px;
+            font-family: $mns-light-font;
+            font-size: 15px;
+            line-height: 1.2;
+
+            a {
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+}

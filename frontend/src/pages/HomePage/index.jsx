@@ -128,7 +128,7 @@ export const HomePage = () => {
 
             <div className={css.line_section_orange}></div>
 
-            <section className={css.container}> 
+            <section className={css.container} id='price'> 
                 <div className={cn(css.container_content, css.arrow_block)}>
                     <p className={css.arrow_title}>Форматы обучения -<br/>выбери свой!</p>
                     <img src={arrow} alt="arrow" className={css.arrow}/>
@@ -351,7 +351,7 @@ export const HomePage = () => {
                 </div>
             </section> 
 
-            <div className={css.line_section_yellow}></div>
+            <div className={css.line_section_yellow} id='about'></div>
 
             <section className={css.container}>    
                 <div className={cn(css.container_content, css.arrow_block)}>
