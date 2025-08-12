@@ -30,3 +30,23 @@ export const getBlogPosts = async (page = 1, pageSize = 12) => {
         return false
     }
 }
+
+export const getCinemaPosts = async () => {
+    try {
+        const response = await apiClient.get('cinema/')
+        return response.data
+    } catch (error) {
+        console.error("error", error);
+        return false
+    }
+}
+
+export const getEpisodeDetails = async (episodeUrl) => {
+    try {
+        const response = await apiClient.get(`episodes/${episodeUrl}/`)
+        return response.data
+    } catch (error) {
+        console.error("error", error);
+        return false
+    }
+}

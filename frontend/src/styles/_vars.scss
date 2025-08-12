@@ -11,6 +11,11 @@ $font-path: '../assets/fonts';
 }
 
 @font-face {
+    font-family: 'mns-medium';
+    src: url('../assets/fonts/Montserrat-Medium.ttf') format('truetype');
+}
+
+@font-face {
     font-family: 'everlasting';
     src: url('../assets/fonts/Everlasting.ttf') format('truetype');
 }
@@ -27,6 +32,7 @@ $font-path: '../assets/fonts';
 
 $mns-bold-font: 'mns-bold', sans-serif;
 $mns-light-font: 'mns-light', sans-serif;
+$mns-medium-font: 'mns-medium', sans-serif;
 $everlasting-font: 'everlasting', sans-serif;
 $myriad-font: 'myriad', sans-serif;
 $mnd-font: 'mnd', sans-serif;

@@ -1,0 +1,171 @@
+@use '../../styles/_vars.scss' as *;
+@use '../../styles/_mixins.scss' as *;
+
+
+.cinema_page {
+    padding-top: 150px;
+    min-height: 71.7vh;
+
+    .filter_container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 40px;
+        gap: 15px;
+        max-width: 400px;
+
+        .filter_label {
+            font-family: $mns-bold-font, sans-serif;
+            font-size: 18px;
+            color: $brown-font-color;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .level_select {
+            padding: 12px 18px;
+            border: 2px solid $orange-color;
+            border-radius: 100px;
+            font-size: 16px;
+            font-family: $mns-bold-font, sans-serif;
+            color: $brown-font-color;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 5px 5px 12px -4px rgba(0, 0, 0, 0.3);
+
+            &:focus {
+                outline: none;
+                border-color: $yellow-color;
+                box-shadow: 0 0 0 3px rgba(250, 227, 0, 0.2);
+            }
+
+            &:hover {
+                border-color: $yellow-color;
+                transform: translateY(-2px);
+                box-shadow: 7px 7px 15px -4px rgba(0, 0, 0, 0.4);
+            }
+        }
+    }
+
+    .search_container {
+        width: 200px;
+        height: 60px;
+        margin: auto;
+        background-color: $orange-color;
+    }
+
+    .cinema_films {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        width: fit-content;
+        margin: 0 auto;
+
+        .cinema_film {
+            flex-basis: 0;
+            text-align: center;
+            margin: 50px 27px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+
+            .cinema_film_linkImg {
+                display: block;
+                width: 282px;
+                height: 282px;
+                border-radius: 14px;
+                box-shadow: 7px 7px 12px rgba(2, 2, 2, 0.58);
+                overflow: hidden;
+                background: #eee;
+                transition: all 0.3s ease;
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: 10px 10px 20px rgba(2, 2, 2, 0.7);
+                    transform: translateY(-3px);
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    transition: transform 0.3s ease-in-out;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+
+            .cinema_film_title {
+                margin: 20px 0 0px;
+                display: block;
+                font-size: 27px;
+                text-decoration: none;
+                color: $brown-font-color;
+                font-family: $mns-bold-font, sans-serif;
+                transition: all 0.3s ease;
+                cursor: pointer;
+
+                &:hover {
+                    color: $orange-color;
+                    transform: translateY(-2px);
+                }
+            }
+
+            .film_episodes {  
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 15px;
+
+                .episode_link {
+                    font-size: 17px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    font-family: $mns-bold-font, sans-serif;
+                    color: black;
+                    padding: 12px 18px;
+                    background: $button-yellow;
+                    border-radius: 100px;
+                    transition: all 0.3s ease;
+                    border: 2px solid transparent;
+                    box-shadow: 5px 5px 12px -4px rgba(0, 0, 0, 0.3);
+
+                    &:hover {
+                        background: $pink-color;
+                        color: white;
+                        transform: translateY(-3px);
+                        box-shadow: 7px 7px 15px -4px rgba(0, 0, 0, 0.4);
+                        border-color: $yellow-color;
+                    }
+
+                    &:active {
+                        transform: translateY(-1px);
+                        box-shadow: 3px 3px 8px -2px rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }    
+                        
+        }
+    }
+
+    .no_results {
+        text-align: center;
+        font-family: $mns-bold-font, sans-serif;
+        font-size: 20px;
+        color: $brown-font-color;
+        margin: 50px auto;
+        padding: 30px;
+        background: $form-bg;
+        border-radius: 20px;
+        box-shadow: 0px 0px 20px 1px $pink-color;
+        max-width: 500px;
+        border: 2px solid $yellow-color;
+    }
+}

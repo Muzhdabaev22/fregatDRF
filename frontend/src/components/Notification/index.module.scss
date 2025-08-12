@@ -1,0 +1,68 @@
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.4s ease-out;
+    max-width: 90vw;
+    min-width: 300px;
+}
+
+.notification_content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notification_icon {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.notification_message {
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.notification_success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.notification_error {
+    background: linear-gradient(135deg, #dc3545, #e74c3c);
+}
+
+.notification_info {
+    background: linear-gradient(135deg, #17a2b8, #20c997);
+}
+
+.notification_exiting {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+}
+
+/* Анимация появления */
+.notification:not(.notification_exiting) {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .notification {
+        min-width: 280px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    .notification_message {
+        font-size: 14px;
+    }
+}

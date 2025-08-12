@@ -207,7 +207,7 @@ export const HomePage = () => {
                             <div className={css.price_and_button}>
                                 <p className={css.price__ot}>от</p>
                                 <p className={css.price_bottom_text}>
-                                    700<br/><span>руб / урок</span>
+                                    900<br/><span>руб / урок</span>
                                 </p>
                                 <a href="#win1"><button className={css.price_button}>ЗАПИСАТЬСЯ</button></a>
                             </div>
