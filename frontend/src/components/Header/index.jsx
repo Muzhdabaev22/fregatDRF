@@ -33,6 +33,18 @@ export const Header = () => {
         return () => window.removeEventListener('scroll', checkScroll);
     }, [hasBackground])
 
+    useEffect(() => {
+        const handleResize = () => {
+            // Закрываем мобильную навигацию при переходе на экран больше мобильного
+            if (window.innerWidth > 768) { // 768px - стандартная точка перелома для мобильных устройств
+                setIsMobileNavOpen(false)
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [])
+
     const isActive = (path) => {
         return location.pathname === path
     }

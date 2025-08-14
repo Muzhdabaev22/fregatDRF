@@ -86,6 +86,22 @@
                 gap: 0;
                 padding: 0;
                 width: 100%;
+                background: linear-gradient(135deg, #FAE300 0%, #FFD700 100%);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                border-radius: 0 0 20px 20px;
+                overflow: hidden;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
 
             .nav_link {
@@ -208,14 +224,20 @@
                     
                     li {
                         text-align: center;
-                        background: #FAE300;
+                        background: transparent;
                         padding: 0;
                         width: 100%;
                         margin: 0;
-                        border-bottom: none;
+                        border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+                        transition: all 0.3s ease;
 
                         &:last-child {
                             border-bottom: none;
+                        }
+
+                        &:hover {
+                            background: rgba(255, 255, 255, 0.2);
+                            transform: translateX(5px);
                         }
                     }
 
@@ -228,22 +250,39 @@
                     }
 
                     .nav_link {
-                        font-size: 16px;
-                        padding: 10px 0;
+                        font-size: 18px;
+                        padding: 20px 0;
                         display: block !important;
                         text-decoration: none;
                         color: $brown-font-color;
                         font-family: $mns-bold-font;
                         width: 100% !important;
                         text-align: center !important;
-                        transition: color 0.15s ease;
-                        letter-spacing: 0.3px;
+                        transition: all 0.3s ease;
+                        letter-spacing: 0.5px;
+                        position: relative;
+                        font-weight: 600;
                         
-
                         &:hover {
-                            transition: 0.5s;
                             color: #5a4a3a;
-                            background: #f8f9fa;
+                            background: transparent;
+                            transform: scale(1.05);
+                        }
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            width: 0;
+                            height: 2px;
+                            background: $brown-font-color;
+                            transition: all 0.3s ease;
+                            transform: translateX(-50%);
+                        }
+
+                        &:hover::after {
+                            width: 60%;
                         }
                     }
                 }
@@ -279,11 +318,19 @@
                 
 
                 @include mobile {
-                    background-color: #FAE300;
-                    padding: 8px 0px;
+                    background: transparent;
+                    padding: 15px 0;
+                    margin: 0;
+                    border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+                    transition: all 0.3s ease;
+
                     &:hover {
-                        transition: 0.5s;
-                        background-color: #fff;
+                        background: rgba(255, 255, 255, 0.1);
+                        transform: translateX(5px);
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
                     }
                 }
 
@@ -301,11 +348,23 @@
                     }
 
                     @include mobile {
-                        font-size: unset;
-                        margin: 0px auto;
+                        font-size: 16px;
+                        margin: 0 auto;
                         display: block;
-                        background-color: #FAE300;
-                        padding: 8px 10px;
+                        background: transparent;
+                        padding: 15px 25px;
+                        border: 2px solid $brown-font-color;
+                        border-radius: 25px;
+                        transition: all 0.3s ease;
+                        font-weight: 600;
+                        letter-spacing: 0.5px;
+
+                        &:hover {
+                            background: $brown-font-color;
+                            color: #FAE300;
+                            transform: scale(1.05);
+                            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+                        }
                     }
                 }
 
@@ -315,8 +374,16 @@
                     border: none;
 
                     @include mobile {
-                        margin: 0px auto;
+                        margin: 0 auto;
                         display: block;
+                        background: $brown-font-color;
+                        color: #FAE300;
+                        border: 2px solid $brown-font-color;
+
+                        &:hover {
+                            background: transparent;
+                            color: $brown-font-color;
+                        }
                     }
                 }
             }
@@ -416,6 +483,8 @@
                 align-items: center;
                 width: 100%;
                 padding: 0 20px;
+                position: relative;
+                z-index: 1002;
             }
 
             @include tablet {
@@ -427,6 +496,19 @@
 
                 @include mobile {
                     display: block;
+                    cursor: pointer;
+                    padding: 10px;
+                    border-radius: 50%;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.1);
+                        transform: scale(1.1);
+                    }
+
+                    .button_mobile {
+                        transition: transform 0.3s ease;
+                    }
                 }
             }
         }
