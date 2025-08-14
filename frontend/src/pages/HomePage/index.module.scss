@@ -6,11 +6,31 @@
     height: auto;
     width: 100%;
 
+    @include mobile {
+        flex-direction: column-reverse;
+    }
+
     .text_section_div {
 
         margin-top: 300px;
         margin-left: 220px;
         width: 100%;
+
+        @include laptop {
+            margin-top: 230px;
+            margin-left: 140px;
+        }
+
+        @include tablet {
+            margin-top: 185px;
+            margin-left: 60px;
+        }
+
+        @include mobile {
+            margin-left: 20px;
+            margin-top: 0px;
+            width: unset;
+        }
 
         .h1_text_section {
             font-family: $everlasting-font;
@@ -19,6 +39,21 @@
             color: rgb(135, 82, 22, 100%);
             position: absolute;
             z-index: 3;
+
+            @include laptop {
+                font-size: 6vw;
+                line-height: 53.4px;
+            }
+
+            @include tablet {
+                font-size: 5vw;
+                line-height: 53.4px;
+            }
+
+            @include mobile {
+                font-size: 10.5vw;
+                line-height: 48.4px;
+            }
         }
 
         .line {
@@ -28,6 +63,21 @@
             z-index: 0;
             width: 100%;
             max-width: 350px;
+
+            @include laptop {
+                margin-top: 72px;
+                margin-left: 87px;
+            }
+
+            @include tablet {
+                margin-top: 72px;
+                margin-left: 28px;
+                width: 34%;
+            }
+
+            @include mobile {
+                display: none;
+            }
         }
 
         .other_text {
@@ -37,6 +87,19 @@
             font-family: $mns-bold-font;
             position: relative;
             z-index: 3;
+
+            @include laptop {
+                padding-top: 135px;
+            }
+
+            @include tablet {
+                padding-top: 135px;
+            }
+
+            @include mobile {
+                padding-top: 104px;
+                font-size: 5.8vw;
+            }
         }
 
         .p_section {
@@ -47,16 +110,45 @@
             padding-top: 20px;
             position: relative;
             z-index: 3;
+
+            @include laptop {
+                font-size: 19px;
+                line-height: 24.8px;
+                max-width: 454px;
+            }
+
+            @include tablet {
+                font-size: 19px;
+                line-height: 23.8px;
+                max-width: 320px;
+            }
+
+            @include mobile {
+                line-height: 34.8px;
+                max-width: 90%;
+            }
         }
 
         .button_contact {
             position: relative;
             z-index: 3;
-            
+
+            @include mobile {
+                text-align: center;
+                display: block;
+                margin-left: -20px;
+            }
+
             button {
                 @include contact_button_mixin;
+
+                @include mobile {
+                    margin-left: 0px;
+                    padding: 22px 40px;
+                    font-size: 21px;
+                    margin-bottom: 20px;
+                }
             }
-            
         }
     }
 
@@ -64,12 +156,29 @@
         width: 50%;
         display: flex;
         justify-content: end;
-        
+
+        @include mobile {
+            width: 100%;
+        }
+
         img {
             position: absolute;
             width: 100%;
             max-width: 750px;
             z-index: 1;
+
+            @include laptop {
+                max-width: 550px;
+            }
+
+            @include tablet {
+                max-width: 500px;
+            }   
+
+            @include mobile {
+                max-width: 550px;
+                position: relative;
+            }
         }
     }
 }
@@ -91,6 +200,18 @@
     @include line-section;
     background: $pink-color;
     margin-top: 300px;
+
+    @include laptop {
+        margin-top: 200px;
+    }
+
+    @include tablet {
+        margin-top: 200px;
+    }
+
+    @include mobile {
+        margin-top: 100px;
+    }
 }
 
 .line_section_orange {
@@ -110,11 +231,36 @@
         margin-bottom: 60px;
         flex-wrap: wrap;
 
+        @include laptop {
+            gap: 20px;
+            justify-content: center;
+        }
+
+        @include tablet {
+            gap: 20px;
+            justify-content: center;
+        }
+
+        @include mobile {
+            gap: 30px;
+            justify-content: center;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+
         .home_card {
             max-width: 353px;
             padding: 0px 10px 80px 20px;   
             border-radius: 10px;      
-            box-shadow: 0px 0px 20px 1px $pink-color;                                                                                            
+            box-shadow: 0px 0px 20px 1px $pink-color;         
+            
+            @include laptop {
+                max-width: 300px;
+            }
+
+            @include mobile {
+                margin: 0px 10px;
+            }
         }
 
         .yellow_card {
@@ -127,6 +273,10 @@
 
         .white_card {
             background-color: $form-bg;
+
+            @include mobile {
+                max-width: unset;
+            }
         }
 
         .green_card {
@@ -134,16 +284,47 @@
             padding-right: 20px;
             height: 85%;
             margin-top: 20px;
+
+            @include laptop {
+                height: 85%;
+                width: 35%;
+            }
+
+            @include tablet {
+                height: unset;
+            }
+
+            @include mobile {
+                height: unset;
+            }
         }
 
         .pink_card {
             background-color: $pink-color;
         }
 
+        .card_mbl {
+            @include mobile {
+                padding-left: 0px !important; 
+            }
+        }
+
         .loop_left {
             position: absolute;
             margin-top: 29px;
             margin-left: 314px;
+
+            @include laptop {
+                margin-left: -320px;
+            }
+
+            @include tablet {
+                display: none;
+            }
+
+            @include mobile {
+                display: none;
+            }
         }
         
         
@@ -151,6 +332,18 @@
             position: absolute;
             margin-top: 29px;
             margin-left: 686px;
+
+            @include laptop {
+                margin-left: 320px;
+            }
+
+            @include tablet {
+                display: none;
+            }
+
+            @include mobile {
+                display: none;
+            }
         }
 
         .text_feedback {
@@ -158,15 +351,35 @@
             width: 588px;
             margin-top: 20px;
             margin-left: 45px;
+
+            @include tablet {
+                width: 580px;
+            }
+
+            @include mobile {
+                width: 205px;
+                margin-top: 60px;
+                margin-left: 33px;
+            }
         }
         
         .bg_feedback {
             width: 100%;
             height: 391px;
+
+            @include mobile {
+                display: none;
+            }
         }
         
         .bg_feedback_mbl {
             display: none;
+
+            @include mobile {
+                display: block;
+                width: 99%;
+                height: 900px;
+            }
         }
     }
 
@@ -200,7 +413,19 @@
     }
 
     .container_content {
-        @include container-content-mixin;    
+        @include container-content-mixin; 
+        
+        @include laptop {
+            max-width: 1000px;
+        }
+
+        @include tablet {
+            max-width: 650px;
+        }
+
+        @include mobile {
+            width: unset;
+        }
 
         .price_full_two {
             display: flex;
@@ -208,14 +433,44 @@
             padding-bottom: 30px;
             margin-left: 40px;
 
+            @include tablet {
+                padding-top: 45px;
+                padding-bottom: 45px;
+            }
+
+            @include mobile {
+                padding-top: 50px;
+                flex-direction: column-reverse;
+                align-items: center;
+                margin-left: 0px;
+            }
+
             .price_text_block_two {
                 @include price-text-block-mixin;
                 padding-right: 140px;
                 padding-left: 30px;
+
+                @include tablet {
+                    padding-left: 0px;
+                }
+
+                @include mobile {
+                    margin-top: 10px;
+                    padding-right: 0px;
+                    padding-left: 20px;
+                    width: auto;
+                }
                 
                 .price_title_two {
                     @include price-title-mixin;
                     padding-left: 0px;
+
+                    @include mobile {
+                        letter-spacing: 5px;
+                        padding-top: 14px;
+                        font-size: 5.5vw;
+                        padding-left: 0px;
+                    }
                 }
 
                 .text_price {
@@ -239,18 +494,68 @@
             display: flex;
             padding-top: 20px;
             padding-bottom: 20px;
+            
+            @include tablet {
+                padding-top: 45px;
+                padding-bottom: 45px;
+                display: block;
+            }
+
+            @include mobile {
+                padding-top: 50px;
+                align-items: center;
+                flex-direction: column;
+            }
 
             .price_text_block { 
                 @include price-text-block-mixin;
                 padding-left: 60px;
 
+                @include tablet {
+                    padding-left: 20px;
+                }
+
+                @include mobile {
+                    margin-top: 10px;
+                    padding-left: 20px;
+                    width: auto;
+                }
+
                 .circle_two {
                     @include circle_mixin;
                     margin-left: 170px;
+
+                    @include laptop {
+                        margin-left: -17px;
+                    }
+
+                    @include tablet {
+                        margin-left: -17px;
+                    }
+
+                    @include mobile {
+                        margin-top: -3px;
+                        margin-left: -6px;
+                    }
                 }
 
                 .price_title {
                     @include price-title-mixin;
+
+                    @include laptop {
+                        padding-left: 0px;
+                    }
+
+                    @include tablet {
+                        padding-left: 0px;
+                    }
+
+                    @include mobile {
+                        letter-spacing: 5px;
+                        padding-top: 14px;
+                        font-size: 5.5vw;
+                        padding-left: 0px;
+                    }
                 }
 
                 .price_text_li {
@@ -264,6 +569,10 @@
 
         .price_and_button {
             display: flex;
+
+            @include mobile {
+                display: unset;
+            }
             
             .price__ot {
                 font-family: $mns-bold-font;
@@ -307,6 +616,10 @@
             color: $brown-font-color;
             cursor: pointer;
 
+            @include mobile {
+                margin-left: 0px;
+            }
+
             &:hover {
                 background-color: $pink-color;
                 color: white;
@@ -326,6 +639,18 @@
 
         .bg_img {
             max-width: 420px;
+
+            @include laptop {
+                width: 400px;
+            }
+
+            @include tablet {
+                display: none;
+            }
+
+            @include mobile {
+                max-width: 99%;
+            }
         }
 
         .bg7_img {
@@ -333,11 +658,41 @@
             max-height: 656px;
             height: 480px;
             padding-left: 50px;
+
+            @include laptop {
+                padding-left: 0;
+            }
+
+            @include tablet {
+                padding-left: 69px;
+            }
+
+            @include mobile {
+                max-width: 100%;
+                max-height: unset;
+                padding-left: 0px;
+                width: unset;
+                height: unset;
+            }
         }
         
         .price_text_block_bottom {
             width: 100%;
             padding-left: 145px;
+
+            @include laptop {
+                padding-left: 33px;
+            }
+
+            @include tablet {
+                padding-top: 20px;
+                padding-left: 0px;
+            }
+
+            @include mobile {
+                width: auto;
+                padding-left: 20px;
+            }
         }
 
         .price_title_bottom {
@@ -350,6 +705,10 @@
         .text_price_bottom {
             @include description-text-mixin;
             font-family: $mns-light-font;
+
+            @include mobile {
+                font-size: 20px;
+            }
         }
 
         .text_price_bottom_span {
@@ -364,6 +723,18 @@
         justify-content: space-between;
         margin-top: 30px;
 
+        @include laptop {
+            gap: 40px;
+        }
+
+        @include tablet {
+            gap: 20px;
+        }
+
+        @include mobile {
+            display: unset;
+        }
+
         .card_link_languages {
             text-decoration: none;
         }
@@ -376,6 +747,14 @@
             height: 200px;
             justify-content: space-between;
 
+            @include tablet {
+                height: 150px;
+            }
+
+            @include mobile {
+                margin-bottom: 20px;
+            }
+
             .img_card_languages {
                 max-width: 150px;
                 margin: 0 auto;
@@ -385,6 +764,15 @@
                 height: 150px;
                 object-fit: contain;
                 flex-shrink: 0;
+
+                @include tablet {
+                    max-height: 110px;
+                }
+
+                @include mobile {
+                    max-width: 200px;
+                    max-height: 200px;
+                }
             }
             
             .text_card_languages {
@@ -394,6 +782,10 @@
                 padding-top: 10px;
                 margin-top: auto;
                 flex-shrink: 0;
+
+                @include tablet {
+                    font-size: 14px;
+                }
             }
             
             .khover {
@@ -421,9 +813,19 @@
         border-radius: 20px;
         justify-content: space-between;
 
+        @include mobile {
+            flex-direction: column;
+            margin-left: 5px;
+            margin-right: 5px; 
+        }
+
         .group_card_description {
             width: 45%;
             padding: 0px 20px 40px 20px;    
+
+            @include mobile {
+                width: auto;
+            }
         }
 
         .middle_group_card {
@@ -431,12 +833,20 @@
             width: 10px;
             height: 80%;
             align-self:center; 
+
+            @include mobile {
+                width: 80%;
+                height: 10px;
+            }
         }
     }
 
     .arrow_block {
         margin-top: 36px;
 
+        @include mobile {
+            margin-left: 20px;
+        }
         @include arrow-block-mixin;
     }   
 
@@ -447,9 +857,26 @@
         -webkit-animation: bounce-down 1.6s linear infinite;
         animation: bounce-down 1.6s linear infinite;
         margin-left: 60px;
+
+        @include tablet {
+            margin: auto !important;
+        }
+
+        @include tablet {
+            margin: auto !important;
+        }
+
+        @include mobile {
+            margin: auto !important;
+        }
     }
 }
 
 .circle {
     @include circle_mixin;
+
+    @include mobile {
+        margin-top: -3px;
+        margin-left: -6px;
+    }
 }

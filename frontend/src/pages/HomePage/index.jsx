@@ -333,18 +333,18 @@ export const HomePage = () => {
                     <img src={arrow} alt="arrow" className={css.arrow}/>
                 </div>
                 <div className={cn(css.container_ind_lessons, css.container_content)}>
-                    <div className={cn(css.orange_card, css.home_card, css.card_laptop)}>
+                    <div className={cn(css.orange_card, css.home_card)}>
                         <p className={css.text_price}>1. Оставьте заявку</p>
                         <li className={css.li_arrow} style={{marginTop: '55px'}}>оставьте свой номер телефона, привязанный к WhatsApp или Telegram (с открытым профилем), чтобы мы с вами связались</li>                 
                     </div>
                     <img src={loop} alt="" className={css.loop_left}/>
-                    <div className={cn(css.home_card, css.card_laptop, css.white_card)}>
-                        <p className={css.text_price} style={{paddingLeft: '30px'}}>2. Пройдите вводную беседу с методистом</p> 
+                    <div className={cn(css.home_card, css.white_card)}>
+                        <p className={cn(css.text_price, css.card_mbl)} style={{paddingLeft: '30px'}}>2. Пройдите вводную беседу с методистом</p> 
                         <li className={css.li_arrow}>на вводном звонке познакомьтесь с методистом, программой, задайте вопросы и назначьте удобное расписание</li> 
                     </div>
                         <img src={loop} alt="" className={css.loop_right}/>
-                    <div className={cn(css.orange_card, css.home_card, css.card_laptop)}>
-                        <p className={css.text_price} style={{paddingLeft: '30px'}}>3. Начните обучение</p>
+                    <div className={cn(css.orange_card, css.home_card)}>
+                        <p className={cn(css.text_price, css.card_mbl)} style={{paddingLeft: '30px'}}>3. Начните обучение</p>
                         <li className={css.li_arrow} style={{marginTop: '55px'}}>идём по выбранному формату с преподавателем, который вам понравился</li> 
                         
                     </div>

@@ -11,13 +11,34 @@
     padding-top: 55px;
     padding-bottom: 50px;
 
+    @include mobile {
+        max-height: unset;
+    }
+
     .container_footer {
         width: 1110px;
         display: flex;
         align-items: center;
 
+        @include laptop {
+            width: 1000px;
+        }
+
+        @include tablet {
+            max-width: 600px;
+        }
+
+        @include mobile {
+            width: unset;
+            flex-direction: column;
+        }
+
         .footer_links {
             display: grid;
+
+            @include mobile {
+                justify-items: center;
+            }
 
             .link_footer {
                 font-family: $myriad-font;
@@ -32,6 +53,11 @@
         .footer_info {
             display: grid;
             margin-left: auto;
+
+            @include mobile {
+                margin-top: 30px;
+                justify-items: center;
+            }
 
             .social_media_icons {
                 display: flex;
@@ -51,6 +77,11 @@
             font-family: $mns-light-font;
             font-size: 15px;
             line-height: 1.2;
+
+            @include mobile {
+                text-align: center;
+                width: auto;
+            }
 
             a {
                 color: white;
