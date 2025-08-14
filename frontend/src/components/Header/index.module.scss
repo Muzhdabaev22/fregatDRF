@@ -1,16 +1,14 @@
 @use '../../styles/_vars.scss' as *;
 @use '../../styles/_mixins.scss' as *;
 
+
 .header {
     position: fixed;
     width: 100%;
     z-index: 1000;
-    
-    .line_section {
-        @include line-section;
-    }
 
     .line_header {
+        @include line-section;
         position: fixed;
         background-color: $yellow-color;
         z-index: -1;
@@ -28,13 +26,43 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 25px;
+        margin-top: 22px;
         z-index: 1001;
         
+        @include laptop {
+            padding: 10px 20px;
+        }
+
+        @include tablet {
+            padding: 0;
+        }
+
+        @include mobile {
+            width: 100%;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
         .logo {
             width: 100%;
             max-width: 131px;
             min-width: 90px;
+            display: block;
+
+            @include tablet {
+                display: none;
+            }
+
+            @include mobile {
+                max-width: 100px;
+                min-width: 70px;
+                margin-bottom: 20px;
+                margin-top: 10px;
+                padding-left: 5px;
+            }
         }
 
         .nav_list {
@@ -42,6 +70,23 @@
             gap: 25px;
             padding-left: 68px;
             align-items: center;
+            
+            @include laptop {
+                gap: 18px;
+            }
+
+            @include tablet {
+                padding: 10px 5px;
+                gap: 15px;
+            }
+
+            @include mobile {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                padding: 0;
+                width: 100%;
+            }
 
             .nav_link {
                 color: $brown-font-color;
@@ -50,32 +95,163 @@
                 white-space: nowrap;
                 position: relative;
                 z-index: 999;
+
+                @include laptop {
+                    font-size: 1.17vw;
+                }
+
+                @include tablet {
+                    font-size: 1.7vw;
+                }
+            }
+
+            .block_form_hov {
+                @include tablet {
+                    display: none;
+                }
+            }
+
+            .mobile_link {
+                @include mobile {
+                    display: none;
+                }
             }
 
             // Hover линии с использованием миксина
             .linehover1, .linehover5 {
                 @include hover-line(-14px, 25px, 120px);
+
+                @include laptop {
+                    margin-top: -9px; 
+                    height: 12px;
+                    width: 86px;
+                }
+
+                @include tablet {
+                    margin-top: -9px;
+                    height: 12px;
+                    width: 86px;
+                }
+
+                @include mobile {
+                    display: none;
+                }
             }
 
             .linehover2 {
                 @include hover-line(-10px, 15px, 88px, -2px);
+
+                @include laptop {
+                    width: 60px;   
+                    height: 12px;
+                }
+
+                @include tablet {
+                    width: 60px;   
+                    height: 12px;
+                }
+
+                @include mobile {
+                    display: none;
+                }
             }
 
             .linehover3, .linehover6 {
                 @include hover-line(-12px, 17px, 136px, -2px);
+
+                @include laptop {
+                    margin-top: -9px;
+                    height: 12px;
+                    width: 100px;
+                }
+
+                @include tablet {
+                    margin-top: -9px;
+                    height: 12px;
+                    width: 100px;
+                }
+
+                @include mobile {
+                    display: none;
+                }
             }
 
             .linehover4 {
                 @include hover-line(-9px, 13px, 63px, -1px);
-            }
 
-            // Упрощенный hover эффект
-            .linehover_block:hover {
-                .linehover1, .linehover2, .linehover3, 
-                .linehover4, .linehover5, .linehover6 {
-                    @include linehover-mixin;
+                @include laptop {
+                    margin-top: -8px;
+                    height: 10px;
+                    width: 42px;
+                }
+
+                @include tablet {
+                    margin-top: -8px;
+                    height: 10px;
+                    width: 42px;
+                }
+
+                @include mobile {
+                    display: none;
                 }
             }
+
+            .linehover_block {
+                &:hover {
+                    .linehover1, .linehover2, .linehover3, 
+                    .linehover4, .linehover5, .linehover6 {
+                        @include linehover-mixin;
+                    }
+                }
+
+                @include mobile {
+                    display: block !important;
+                    width: 100% !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    
+                    li {
+                        text-align: center;
+                        background: #f8f9fa;
+                        padding: 0;
+                        width: 100%;
+                        margin: 0;
+                        border-bottom: none;
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                    }
+
+                    .mobile_padding_nav {
+                        padding-top: 0 !important;
+                    }
+
+                    img {
+                        display: none;
+                    }
+
+                    .nav_link {
+                        font-size: 16px;
+                        padding: 18px 0;
+                        display: block !important;
+                        text-decoration: none;
+                        color: $brown-font-color;
+                        font-family: $mns-bold-font;
+                        width: 100% !important;
+                        text-align: center !important;
+                        transition: color 0.15s ease;
+                        letter-spacing: 0.3px;
+
+                        &:hover {
+                            color: #5a4a3a;
+                            background: #f8f9fa;
+                        }
+                    }
+                }
+            }
+
+
 
             .active {
                 @include linehover-mixin;
@@ -84,10 +260,29 @@
             .club_padding {
                 margin-left: 60px;
                 margin-right: 60px;
+
+                @include laptop {
+                    margin: 0 18px
+                }
+
+                @include tablet {
+                    margin: 0;
+                }
+
+                @include mobile {
+                    margin: 0;
+                    display: block !important;
+                    width: 100% !important;
+                }
             }
 
             .button_nav_block {
                 margin-left: auto;
+
+                @include mobile {
+                    margin: 20px auto 0;
+                    text-align: center;
+                }
 
                 .button_nav {
                     @include button-base;
@@ -97,12 +292,26 @@
                     padding: 8px;
                     margin-left: 10px;
                     white-space: nowrap;
+
+                    @include tablet {
+                        font-size: 1.7vw;
+                    }
+
+                    @include mobile {
+                        margin: 10px auto;
+                        display: block;
+                    }
                 }
 
                 .entrence {
                     margin-left: 20px;
                     transition: 0.3s;
-                    border: none;    
+                    border: none;
+
+                    @include mobile {
+                        margin: 10px auto;
+                        display: block;
+                    }
                 }
             }
 
@@ -194,6 +403,36 @@
                 }
             }
         }
+        .mobile_nav {
+            @include mobile {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            @include tablet {
+                display: none;
+            }
+
+            .div_btn_mobile {
+                display: none;
+
+                @include mobile {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
     }
 }
 
@@ -345,4 +584,18 @@
 
 .error {
     @include error-message;
+}
+
+.none {
+    @include tablet {
+        display: none;
+    }
+
+    @include mobile {
+        display: block !important;
+    }
+}
+
+.visible { 
+    display: block !important; 
 }

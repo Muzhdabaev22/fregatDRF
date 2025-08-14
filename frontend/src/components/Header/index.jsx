@@ -3,7 +3,7 @@ import cn from 'classnames'
 import {Link, useLocation} from 'react-router-dom'
 import { getHomeRoute, getLangRoute, getBlogRoute, getCinemaRoute } from '../../lib/routes'
 import logo from '../../assets/images/logo.png'
-// import buttonMobile from '../../assets/images/button-mobile.png'
+import buttonMobile from '../../assets/images/button-mobile.png'
 import line_cinema from '../../assets/images/line-cinema.png'
 import linehover from '../../assets/images/linehover.png'
 import mail from '../../assets/images/mailform.png'
@@ -36,6 +36,9 @@ export const Header = () => {
         return location.pathname === path
     }
 
+    function openbox() {
+        console.log('openbox')
+    }
 
     return (
         <>  
@@ -71,9 +74,9 @@ export const Header = () => {
                 <nav className={cn(css.nav, {[css.scrollBackground]: hasBackground})}>
                     <div className={css.mobile_nav}>
                         <Link to={getHomeRoute}><img src={logo} alt='logo' className={css.logo} /></Link>
-                        {/* <div onClick={openbox} className={css.div_btn_mobile} role='button' tabIndex={0}>
+                        <div onClick={openbox} className={css.div_btn_mobile} role='button' tabIndex={0}>
                             <img src={buttonMobile} alt="mobile menu button" className={css.button_mobile} />
-                        </div> */}
+                        </div>
                     </div>
                     <ul className={css.nav_list}>
                         <div className={css.linehover_block}>

@@ -252,3 +252,21 @@
         transform: translateY(4px);
     }
 }
+
+@mixin laptop {
+    @media (min-width: 1024px) and (max-width: 1440px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 600px) and (max-width: 1023px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 599px) {
+        @content;
+    }
+}
