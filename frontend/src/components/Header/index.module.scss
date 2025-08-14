@@ -205,14 +205,10 @@
                 }
 
                 @include mobile {
-                    display: block !important;
-                    width: 100% !important;
-                    margin: 0 !important;
-                    padding: 0 !important;
                     
                     li {
                         text-align: center;
-                        background: #f8f9fa;
+                        background: #FAE300;
                         padding: 0;
                         width: 100%;
                         margin: 0;
@@ -233,7 +229,7 @@
 
                     .nav_link {
                         font-size: 16px;
-                        padding: 18px 0;
+                        padding: 10px 0;
                         display: block !important;
                         text-decoration: none;
                         color: $brown-font-color;
@@ -242,8 +238,10 @@
                         text-align: center !important;
                         transition: color 0.15s ease;
                         letter-spacing: 0.3px;
+                        
 
                         &:hover {
+                            transition: 0.5s;
                             color: #5a4a3a;
                             background: #f8f9fa;
                         }
@@ -278,10 +276,15 @@
 
             .button_nav_block {
                 margin-left: auto;
+                
 
                 @include mobile {
-                    margin: 20px auto 0;
-                    text-align: center;
+                    background-color: #FAE300;
+                    padding: 8px 0px;
+                    &:hover {
+                        transition: 0.5s;
+                        background-color: #fff;
+                    }
                 }
 
                 .button_nav {
@@ -298,8 +301,11 @@
                     }
 
                     @include mobile {
-                        margin: 10px auto;
+                        font-size: unset;
+                        margin: 0px auto;
                         display: block;
+                        background-color: #FAE300;
+                        padding: 8px 10px;
                     }
                 }
 
@@ -309,7 +315,7 @@
                     border: none;
 
                     @include mobile {
-                        margin: 10px auto;
+                        margin: 0px auto;
                         display: block;
                     }
                 }
