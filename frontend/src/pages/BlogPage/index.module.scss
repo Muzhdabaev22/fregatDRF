@@ -15,8 +15,20 @@
             margin-top: 45px;
             margin-left: 45px;
 
+            @include mobile {
+                margin-left: 21px;
+            }
+
             .circle {
                 @include circle-mixin;
+
+                @include laptop {
+                    margin-top: 25px;
+                }
+
+                @include mobile {
+                    margin-top: -7px;
+                }
             }
             
             .blog_header_title {
@@ -26,11 +38,35 @@
                 color: rgb(135, 82, 22, 100%);
                 z-index: 1;
                 position: relative; 
+
+                @include tablet {
+                    font-size: 4.5vw;
+                    line-height: 67.4px;
+                }
+
+                @include mobile {
+                    font-size: 12vw;
+                    line-height: 42px;
+                }
             }
             
             .arrow_block {   
                 line-height: 1.2;     
                 @include arrow-block-mixin;
+
+                @include mobile {
+                    margin-top: 30px;
+                }
+
+                .arrow_title {
+                    @include tablet {
+                        font-size: 20px;
+                    }
+
+                    @include mobile {
+                        font-size: 21px;
+                    }
+                }
             }     
 
             .text_description {
@@ -58,10 +94,19 @@
                 padding-right: 65px;
                 -webkit-animation: bounce-down 1.6s linear infinite;
                 animation: bounce-down 1.6s linear infinite;
-            
+
+                @include mobile {
+                    margin-top: 0px;
+                    padding-right: 0px;
+                }
+
                 img {
                     max-width: 400px;
                     width: 100%;
+
+                    @include tablet {
+                        max-width: 300px;
+                    }
                 }
             }
         }
@@ -80,12 +125,23 @@
     justify-content: center;
     margin: 0 20px;
 
+    @include mobile {
+        margin:0px 5px;
+    }
+
     .posts_div {
         display: grid;
         grid-template-columns: auto auto auto auto;
         margin-top: 60px;
         gap: 30px;
 
+        @include tablet {
+            grid-template-columns: auto auto;
+        }
+
+        @include mobile {
+            display: block;
+        }
 
         .blog_card {
             position: relative;
@@ -96,6 +152,12 @@
             box-shadow: 0px 0px 20px 1px $pink-color;
             margin-top: 100px;
             z-index: 11;
+
+            @include mobile {
+                max-width: 270px;
+                border: 20px solid #FEEB8F;
+                margin-top: 100px;
+            }
 
             &::after {
                 content: '';
@@ -137,6 +199,14 @@
                 text-align: center;
                 font-size: 18px;
                 box-shadow: 0px 0px 22px 0px rgba(34, 60, 80, 0.2);
+
+                @include tablet {
+                    font-size: 17px;
+                }
+
+                @include mobile {
+                    font-size: 18px;
+                }
             }
 
             &:hover {
@@ -155,13 +225,19 @@
     left: 0;
     background: rgba(0, 0, 0, 0.65);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     overflow: auto;
     width: 100%;
     height: 100%;
     z-index: 100000;
     padding: 20px;
+    padding-top: 20px;
+
+    @include mobile {
+        padding: 10px;
+        padding-top: 20px;
+    }
 
     .dm_table {
         display: table;
@@ -186,12 +262,39 @@
                 border-radius: 10px;
                 overflow-wrap: anywhere;
                 position: relative; // Добавляем position: relative для абсолютного позиционирования кнопки
+                max-height: calc(100vh - 40px);
+                overflow-y: auto;
+                
+                @include mobile {
+                    padding: 20px;
+                    max-width: 100%;
+                    width: 100%;
+                    margin: 0 10px;
+                }
+                
+                @include tablet {
+                    max-width: 90%;
+                    padding: 25px;
+                }
     
                 .modal_title {
                     font-size: 22px;
                     padding-top: 30px;
                     padding-bottom: 30px;
                     color: #666363;
+                    word-wrap: break-word;
+                    
+                    @include mobile {
+                        font-size: 20px;
+                        padding-top: 20px;
+                        padding-bottom: 20px;
+                    }
+                    
+                    @include tablet {
+                        font-size: 21px;
+                        padding-top: 25px;
+                        padding-bottom: 25px;
+                    }
                 }
                 
                 p {
@@ -199,11 +302,32 @@
                     padding-top: 7px;
                     padding-bottom: 7px;
                     color: #666363;
+                    word-wrap: break-word;
+                    
+                    @include mobile {
+                        font-size: 18px;
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                    }
+                    
+                    @include tablet {
+                        font-size: 19px;
+                        padding-top: 6px;
+                        padding-bottom: 6px;
+                    }
                     
                     a {
                         font-size: 20px;
                         text-decoration:underline;
                         color: #666363;
+                        
+                        @include mobile {
+                            font-size: 18px;
+                        }
+                        
+                        @include tablet {
+                            font-size: 19px;
+                        }
                     }
                 }
 
@@ -220,9 +344,19 @@
                     background: none;
                     border: none;
                     position: absolute;
-                    top: 0px;
+                    top: 10px;
                     right: 25px;
                     outline: none;
+                    
+                    @include mobile {
+                        top: 10px;
+                        right: 15px;
+                    }
+                    
+                    @include tablet {
+                        top: 10px;
+                        right: 20px;
+                    }
 
                     &:after {
                         display: block;

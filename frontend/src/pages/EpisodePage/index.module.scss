@@ -1,4 +1,6 @@
 @use '../../styles/_vars.scss' as *;
+@use '../../styles/_mixins.scss' as *;
+
 
 .cinema_container {
     max-width: 1690px; 
@@ -11,6 +13,21 @@
     justify-content: space-between;
     padding-top: 150px;
     min-height: 59vh;
+    padding: 150px 0px 10px;
+
+    @include laptop {
+        flex-direction: column;
+    }
+
+    @include tablet {
+        flex-direction: column;
+        padding-top: 80px;
+    }
+
+    @include mobile {
+        flex-direction: column;
+        padding-top: 80px;
+    }
 }
 
 .episode_wrapper {
@@ -24,12 +41,45 @@
 .episode__left {
     width: 45%;
     margin-right: 55%;
+
+    @include laptop {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    @include tablet {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    @include mobile {
+        width: 95%;
+        margin: 0 auto;
+    }
 }
 
 .episode__right {
     width: 45%;
     padding-bottom: 40px;
     position: fixed;
+
+    @include laptop {
+        width: 70%;
+        margin: 0 auto;
+        position: unset;
+    }
+
+    @include tablet {
+        width: 80%;
+        margin: 0 auto;
+        position: unset;
+    }
+
+    @include mobile {
+        width: 95%;
+        margin: 60px auto;
+        position: unset;
+    }
 }
 
 .episode_wrapper__header {
@@ -47,6 +97,10 @@
 .episode_desc {
     display: flex;
     justify-content: space-between;
+
+    @include mobile {
+        flex-direction: column-reverse;
+    }
 }
 
 .episode_desc__desc {
@@ -83,6 +137,11 @@
     height: 282px;
     border-radius: 14px;
     overflow: hidden;
+
+    @include mobile {
+        width: unset;
+        height: unset;
+    }
 }
 
 .episode_desc__img {
@@ -97,6 +156,11 @@
     background-color: black;
     border-radius: 40px;
     box-shadow: 7px 7px 12px rgba(2, 2, 2, 0.58);
+
+    @include mobile {
+        min-height: 200px;
+        height: auto;
+    }
 }
 
 .no_video {
@@ -365,6 +429,14 @@
     display: flex;
     margin-top: 20px;
     font-size: 18px;
+
+    @include tablet {
+        flex-direction: column;
+    }
+
+    @include mobile {
+        flex-direction: column;
+    }
 }
 
 .img_substory {
@@ -372,6 +444,14 @@
     width: 200px;
     height: 300px;
     margin-right: 20px;
+
+    @include tablet {
+        margin: 0 auto;
+    }
+
+    @include mobile {
+        margin: 0 auto;
+    }
 }
 
 .substory_text_detail > p {
@@ -384,6 +464,16 @@
     font-weight: 700;
     display: block;
     margin-bottom: 10px;
+
+    @include tablet {
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+
+    @include mobile {
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
 }
 
 /* RIGHT ORDER SECTION STYLES */
@@ -663,49 +753,4 @@
     font-weight: normal;
     font-family: $mns-light-font, sans-serif;
     opacity: 0.8;
-}
-
-/* RESPONSIVE DESIGN */
-@media (max-width: 1200px) {
-    .episode {
-        flex-direction: column;
-    }
-    
-    .episode__left,
-    .episode__right {
-        width: 100%;
-    }
-    
-    .episode__right {
-        margin-bottom: 40px;
-    }
-}
-
-@media (max-width: 768px) {
-    .episode_wrapper {
-        padding: 20px;
-        margin-bottom: 20px;
-    }
-    
-    .episode_wrapper__header > h1 {
-        font-size: 28px;
-    }
-    
-    .episode_desc {
-        flex-direction: column;
-    }
-    
-    .episode_desc__cover {
-        margin: 20px auto 0;
-    }
-    
-    .item {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .container_quest_order {
-        margin: 10px 0;
-        max-width: 100%;
-    }
 }

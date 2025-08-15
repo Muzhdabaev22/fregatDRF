@@ -1,4 +1,4 @@
-@use '../../styles/_vars.scss' as *;
+    @use '../../styles/_vars.scss' as *;
 @use '../../styles/_mixins.scss' as *;
 
 
@@ -14,12 +14,24 @@
         gap: 15px;
         max-width: 400px;
 
+        @include mobile {
+            flex-direction: column;
+            gap: 10px;
+            max-width: 100%;
+            padding: 0 20px;
+        }
+
         .filter_label {
             font-family: $mns-bold-font, sans-serif;
             font-size: 18px;
             color: $brown-font-color;
             font-weight: 600;
             white-space: nowrap;
+
+            @include mobile {
+                font-size: 16px;
+                text-align: center;
+            }
         }
 
         .level_select {
@@ -33,6 +45,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 5px 5px 12px -4px rgba(0, 0, 0, 0.3);
+
+            @include mobile {
+                padding: 15px 20px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 280px;
+                text-align: center;
+            }
 
             &:focus {
                 outline: none;
@@ -83,6 +103,11 @@
                 background: #eee;
                 transition: all 0.3s ease;
                 cursor: pointer;
+
+                @include mobile {
+                    width: 250px;
+                    height: 250px;
+                }
 
                 &:hover {
                     box-shadow: 10px 10px 20px rgba(2, 2, 2, 0.7);
