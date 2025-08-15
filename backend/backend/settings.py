@@ -36,6 +36,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'home.middleware.MediaFileMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -108,6 +109,18 @@ STATIC_ROOT = BASE_DIR / 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Настройки для медиа файлов
+MEDIA_SERVE_ATTRS = {
+    'video/*': {
+        'Accept-Ranges': 'bytes',
+        'Content-Length': None,
+    },
+    'audio/*': {
+        'Accept-Ranges': 'bytes',
+        'Content-Length': None,
+    }
+}
 
 
 # Default primary key field type
