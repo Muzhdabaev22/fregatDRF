@@ -4,8 +4,9 @@ import { BlogPage } from './pages/BlogPage'
 import { CinemaPage } from './pages/CinemaPage'
 import { EpisodePage } from './pages/EpisodePage'
 import { Layout } from './components/Layout'
-import { getBlogRoute, getCinemaRoute, getHomeRoute } from './lib/routes'
+import { getBlogRoute, getCinemaRoute, getHomeRoute, getOfertaRoute } from './lib/routes'
 import './styles/global.scss'
+import { OfertaPage } from './pages/OfertaPage'
 
 
 export const App = () => {
@@ -17,6 +18,7 @@ export const App = () => {
             <Route path={getBlogRoute} element={<BlogPage />} />
             <Route path={getCinemaRoute} element={<CinemaPage />} />
             <Route path="/episode/:episodeUrl" element={<EpisodePage />} />
+            <Route path={getOfertaRoute} element={<OfertaPage />} />
           </Route>
         </Routes>
       </Router>

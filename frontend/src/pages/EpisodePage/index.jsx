@@ -288,10 +288,9 @@ export const EpisodePage = () => {
                             controls 
                             preload="metadata"
                             className={css.episode_video}
-                            poster={episode.img}
+                            poster={episode.video_cover}
                             crossOrigin="anonymous"
                             onError={(e) => {
-                                console.error('Ошибка загрузки видео:', e);
                                 setNotification({
                                     message: 'Ошибка загрузки видео. Попробуйте обновить страницу.',
                                     type: 'error',
@@ -309,6 +308,13 @@ export const EpisodePage = () => {
                                 src={episode.img} 
                                 alt={episode.title} 
                                 className={css.episode_image}
+                                onError={(e) => {
+                                    setNotification({
+                                        message: 'Ошибка загрузки изображения эпизода',
+                                        type: 'error',
+                                        duration: 5000
+                                    });
+                                }}
                             />
                             <div className={css.video_unavailable_message}>
                                 <p>🎬 Видео недоступно</p>
@@ -344,7 +350,11 @@ export const EpisodePage = () => {
                                     </p>
                                 </div>
                                 <div className={css.episode_desc__cover}>
-                                    <img src={episode.img} alt="logo" className={css.episode_desc__img}/>
+                                    <img 
+                                        src={episode.img} 
+                                        alt="logo" 
+                                        className={css.episode_desc__img}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -602,7 +612,11 @@ export const EpisodePage = () => {
                             {episode.story && episode.story.length > 0 ? (
                                 episode.story.map((story) => (
                                     <div key={story.id} className={css.container_substory}>
-                                        <img src={story.image} alt="img" className={css.img_substory}/>
+                                        <img 
+                                            src={story.image} 
+                                            alt="img" 
+                                            className={css.img_substory}
+                                        />
                                         <div className={css.substory_text_detail}>
                                             <span className={css.bold_text}>Let us think about what was before:</span>
                                             <p>{story.bef_one}</p>

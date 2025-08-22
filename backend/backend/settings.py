@@ -115,10 +115,21 @@ MEDIA_SERVE_ATTRS = {
     'video/*': {
         'Accept-Ranges': 'bytes',
         'Content-Length': None,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Accept, Content-Type, X-Requested-With',
     },
     'audio/*': {
         'Accept-Ranges': 'bytes',
         'Content-Length': None,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Accept, Content-Type, X-Requested-With',
+    },
+    'image/*': {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Accept, Content-Type, X-Requested-With',
     }
 }
 
@@ -174,7 +185,7 @@ CKEDITOR_5_CONFIGS = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 2
+    'PAGE_SIZE': 50
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -214,3 +225,7 @@ CORS_ALLOW_HEADERS = [
     'x-csrftoken',
     'x-requested-with',
 ]
+
+# Дополнительные настройки CORS для медиафайлов
+CORS_URLS_REGEX = r'^.*$'
+CORS_ALLOW_ALL_ORIGINS = False

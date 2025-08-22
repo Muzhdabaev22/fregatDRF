@@ -1,0 +1,59 @@
+@use '../../styles/_mixins.scss' as *;
+@use '../../styles/vars.scss' as *;
+
+.container_content {
+    @include container-content-mixin; 
+        
+    @include laptop {
+        max-width: 1000px;
+    }
+
+    @include tablet {
+        max-width: 650px;
+    }
+
+    @include mobile {
+        width: unset;
+        padding: 0 10px;
+    }
+}
+
+.pageWrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 150px;
+  padding-bottom: 100px;
+}
+
+.mainTitle {
+  text-align: center;
+  font-family: $mns-medium-font, sans-serif; 
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.subtitle {
+  text-align: center;
+  font-family: $mns-light-font, sans-serif; 
+  font-size: 24px;
+}
+
+.subtitleStrong {
+  text-align: center;
+  font-family: $mns-medium-font, sans-serif; 
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.paragraph {
+  font-family: $mns-light-font, sans-serif; 
+  font-size: 21px;
+}
+
+.sectionTitle {
+  font-family: $mns-medium-font, sans-serif; 
+  font-size: 25px;
+  font-weight: bold;
+}
+
+

@@ -63,6 +63,7 @@ class Episode(models.Model):
     topic = models.ManyToManyField(Topic, verbose_name="Тема", related_name="topic_related")
     author = models.ManyToManyField(Author, verbose_name="Автор", related_name="author_related")
     video = models.FileField("Видео", max_length=100)
+    video_cover = models.ImageField("Обложка для видео")
     script = CKEditor5Field('Текст', config_name='extends') 
     
     def __str__(self):

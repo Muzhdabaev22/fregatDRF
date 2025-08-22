@@ -19,17 +19,27 @@ class BlogAPIView(viewsets.ReadOnlyModelViewSet):
     queryset = PostBlog.objects.all().order_by("-created_at")
     serializer_class = BlogSerializer
     pagination_class = BlogAPIListPagination
+    
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
 
 
 class CinemaAPIView(viewsets.ReadOnlyModelViewSet):
     queryset = Movie.objects.all()
     serializer_class = CinemaSerializer
+    
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
 
 
 class EpisodeDetailAPIView(APIView):
     def get(self, request, episode_url):
         episode = get_object_or_404(Episode, url=episode_url)
-        serializer = EpisodeDetailSerializer(episode)
+        serializer = EpisodeDetailSerializer(episode, context={'request': request})
         return Response(serializer.data)
 
 

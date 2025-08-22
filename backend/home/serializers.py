@@ -46,6 +46,9 @@ class SubStorySerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if request and data['image']:
             data['image'] = request.build_absolute_uri(data['image'])
+        elif data['image']:
+            # Fallback если request отсутствует
+            data['image'] = 'http://127.0.0.1:8000' + data['image']
         return data
 
 class RightOrderSerializer(serializers.ModelSerializer):
@@ -66,7 +69,7 @@ class EpisodeDetailSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Episode
-        fields = ('id', 'title', 'number_epis', 'img', 'url', 'level', 'accent', 'topic', 'author', 'video', 'script', 'vocabulary', 'test', 'order', 'discus', 'story')
+        fields = ('id', 'title', 'number_epis', 'img', 'url', 'level', 'accent', 'topic', 'author', 'video', 'video_cover', 'script', 'vocabulary', 'test', 'order', 'discus', 'story')
     
     def to_representation(self, instance):
         data = super().to_representation(instance)
@@ -77,6 +80,13 @@ class EpisodeDetailSerializer(serializers.ModelSerializer):
                 data['img'] = request.build_absolute_uri(data['img'])
             if data['video']:
                 data['video'] = request.build_absolute_uri(data['video'])
+        else:
+            # Fallback если request отсутствует - используем базовый URL
+            base_url = 'http://127.0.0.1:8000'
+            if data['img']:
+                data['img'] = base_url + data['img']
+            if data['video']:
+                data['video'] = base_url + data['video']
         return data
 
 class EpisodeSerializer(serializers.ModelSerializer):
@@ -91,6 +101,9 @@ class EpisodeSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if request and data['img']:
             data['img'] = request.build_absolute_uri(data['img'])
+        elif data['img']:
+            # Fallback если request отсутствует
+            data['img'] = 'http://127.0.0.1:8000' + data['img']
         return data
 
 class BlogSerializer(serializers.ModelSerializer):
@@ -104,6 +117,9 @@ class BlogSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if request and data['img']:
             data['img'] = request.build_absolute_uri(data['img'])
+        elif data['img']:
+            # Fallback если request отсутствует
+            data['img'] = 'http://127.0.0.1:8000' + data['img']
         return data
 
 
