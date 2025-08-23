@@ -1,8 +1,6 @@
-$font-path: '../assets/fonts';
-
 @font-face {
     font-family: 'mns-bold';
-    src: url('#{$font-path}/Montserrat-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/Montserrat-Bold.ttf') format('truetype');
 }
 
 @font-face {
@@ -22,12 +20,12 @@ $font-path: '../assets/fonts';
 
 @font-face {
     font-family: 'myriad';
-    src: url('#{$font-path}/Myriad_Pro.ttf') format('truetype');
+    src: url('../assets/fonts/Myriad_Pro.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'mnd';
-    src: url('#{$font-path}/Mont-Heavy-DEMO.ttf') format('truetype');
+    src: url('../assets/fonts/Mont-Heavy-DEMO.ttf') format('truetype');
 }
 
 $mns-bold-font: 'mns-bold', sans-serif;
