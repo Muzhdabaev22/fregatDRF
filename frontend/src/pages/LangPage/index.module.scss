@@ -1,0 +1,132 @@
+@use '../../styles/_vars' as *;
+@use '../../styles/_mixins' as *;
+
+.line_section_pink {
+    @include line-section;
+    background: $pink-color;
+}
+.center_block_wrapper {
+    overflow: hidden;
+  }
+.center_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;  
+    
+    .h1_langs {
+        font-family: $everlasting-font;
+        font-size: 7vw;
+        line-height: 110.4px;
+        color: $brown-font-color;
+        margin-top: 20px;
+        position: relative;
+        z-index: 1;
+
+    }
+
+    .circle {
+        @include circle_mixin;
+        margin: 0px;
+        top: 100px;
+        transition: 0.5s;
+        opacity: 0;
+        transform: translateX(-50px);
+        animation: slideIn 0.8s ease-out forwards;
+    }
+
+    .line {
+        position: absolute;
+        right: -73px;
+        bottom: -9px;
+        z-index: 0;
+        width: 100%;
+        max-width: 350px;   
+        transition: 0.5s;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: slideUp 0.8s ease-out forwards;
+    }
+
+    @keyframes slideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+    }
+
+    @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+    }
+
+    .eng_girl_img {
+        width: 100%;
+        max-width: 520px;
+        margin-top: 20px;
+    }
+
+    .lang_animation_block {
+        position: absolute;
+        pointer-events: none;
+        text-align: center;
+        align-content: center;
+        border-radius: 30px;
+        font-family: $mns-bold-font;
+        font-size: 2vw;
+        height: 60px;
+        padding: 0px 40px;
+    }
+
+    .lang_block_1 {
+        background-color: $button-yellow;
+        top: 32%;
+        left: 10%;
+    }
+
+    .lang_block_2 {
+        background-color: $green-color;
+        top: 46%;
+        left: 13%;
+    }
+
+    .lang_block_3 {
+        top: 65%;
+        left: 18%;
+        background-color: $pink-color;
+    }
+
+
+    .lang_block_4 {
+        top: 80%;
+        left: 11%;
+        background-color: $white-color;
+    }
+
+    .lang_block_5 {
+        top: 38%;
+        right: 10%;
+        background-color: $pink-color;
+    }
+
+    .lang_block_6 {
+        top: 53%;
+        right: 15%;
+        background-color: $white-color;
+    }
+
+    .lang_block_7 {
+        top: 69%;
+        right: 13%;
+        background-color: $button-yellow;
+    }
+
+    .lang_block_8 {
+        top: 84%;
+        right: 13%;
+        background-color: $green-color;        
+    }
+}
