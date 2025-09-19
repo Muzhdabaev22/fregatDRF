@@ -2,6 +2,8 @@ import css from './index.module.scss'
 import eng_girl from '../../assets/images/eng-girl.png'
 import circle from '../../assets/images/circle.png'
 import linehover from '../../assets/images/linehover.png'
+import gif_where_are_you from '../../assets/gifs/gif_where_are_you.mp4'
+import bg_book from '../../assets/images/bg-book.png'
 import { gsap } from '../../lib/gsap'
 import cn from 'classnames'
 import { useEffect, useRef } from 'react'
@@ -51,7 +53,7 @@ export const LangPage = () => {
     return (
         <>
             <div className={css.center_block_wrapper}>
-                <div ref={centerBlock} className={css.center_block}>
+                <div ref={centerBlock} className={cn(css.center_block, css.container)}>
                     <div style={{ position: 'relative' }}>
                         <img className={css.circle} src={circle} alt="circle" />
                         <h1 className={css.h1_langs} style={{ paddingTop: '70px' }}>
@@ -89,7 +91,59 @@ export const LangPage = () => {
             </div>
 
             <div className={css.line_section_pink}></div>
-            <div style={{ height: '1000px' }}></div>
+
+            <div className={css.container}>
+                <div className={css.gif_container}>
+                    <div className={css.gif_left_block}>
+                        <h2 className={css.gif_title}>ВВОДНОЕ ЗНАКОМСТВО</h2>
+                        <p className={css.gif_text}>узнайте <span className={css.gif_text_span}>from the horse's mouth</span> <br />из первых уст, как проходит обучение, и уже потом примите решение</p>
+                        <a href="#win1"><button className={css.price_button}>ЗАПИСАТЬСЯ</button></a>
+                    </div>
+                    <div className={css.gif_right_block}>
+                        <video autoPlay loop muted playsInline>
+                            <source src={gif_where_are_you} type="video/mp4" />
+                            Ваш браузер не поддерживает видео тег.
+                        </video>
+                        <p className={css.gif_text_in_section}>после записи <span className={css.gif_text_markdown}>мы свяжемся с вами,</span><br />назначим время для звонка, презентуем варианты обучения и программы, <span className={css.gif_text_markdown}>назначим удобное расписание для занятий</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div className={css.line_section_pink}></div>
+
+            <div className={cn(css.center_block, css.container)}>
+                <div style={{ position: 'relative' }}>
+                    <img className={css.circle} src={circle} alt="circle" />
+                    <h1 className={css.h1_langs} style={{ paddingTop: '70px' }}>
+                        Программа обучения 
+                    </h1>
+                    <img className={css.line} src={linehover} alt="linehover" />
+                </div>
+
+                <div className={css.container_content}>
+                    <div className={css.left_content}>
+                        <div className={css.circle_lang}>
+                            <p className={css.text_circle}>уровни</p>
+                            <p className={css.levels_circle}>от А2 до С1</p>
+                        </div>
+                        <img src={bg_book} alt="" className={css.bg_book}/>
+                    </div>
+                    <div className={css.right_content}>
+                        <p className={css.rotated_text}>точно пригодится в жизни</p>
+
+                        <div>
+                            <p className={css.title_top_part}>современный</p>
+                            <p className={css.title_bottom_part}>учебник</p>
+                        </div>
+
+                        <p>живой курс <br /> с реальными жизненными темами <br /> с мультиуровневым подходом</p>
+
+                        <p>контекстное обучение <br /> по коммуникативной методике</p>
+
+                        <p>Каждый раздел - это ситуация из реальной жизни, в которую внедрены структурированная грамматика и актуальная лексика. И все это на основе культовых фильмов и интервью англоговорящих актеров.</p>
+                    </div>
+                </div>
+            </div>
         </>
     );
 };

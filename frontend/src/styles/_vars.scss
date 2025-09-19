@@ -28,12 +28,18 @@
     src: url('../assets/fonts/Mont-Heavy-DEMO.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'hamilton';
+    src: url('../assets/fonts/mr_hamiltoneg.ttf') format('truetype');
+}
+
 $mns-bold-font: 'mns-bold', sans-serif;
 $mns-light-font: 'mns-light', sans-serif;
 $mns-medium-font: 'mns-medium', sans-serif;
 $everlasting-font: 'everlasting', sans-serif;
 $myriad-font: 'myriad', sans-serif;
 $mnd-font: 'mnd', sans-serif;
+$hamilton-font: 'hamilton', sans-serif;
 
 // Цвета
 $yellow-color: #FAE300;
