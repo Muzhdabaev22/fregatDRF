@@ -16,32 +16,91 @@
     justify-content: center;
 
     .container_content {
-        width: 90%;
+        width: 85%;
         display: flex;
         margin: 60px auto;
 
         .left_content {
-            max-width: 60%;
             position: relative;
 
             .circle_lang {
                 position: absolute;
-                width: 100px;
-                height: 100px;
+                width: 150px;
+                height: 150px;
                 border-radius: 50%;
                 background-color: black;
+                left: 82px;
+                top: -10px;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                line-height: 1.2;
+
+                .text_circle {
+                    z-index: 2;
+                    color: white;
+                    font-family: $mns-bold-font;
+                    font-size: 18px;
+                }
+
+                .levels_circle {
+                    z-index: 2;
+                    color: $pink-color;
+                    font-family: $mns-bold-font;
+                    font-size: 23px;
+                }
             }
 
             .bg_book {
-                width: 100%;
+                width: 1100px;
             }
 
         }
 
         .right_content {
             
-            .rotated_text {
+            padding-top: 50px;
+            padding-left: 50px;
 
+            .rotated_text {
+                font-size: 50px;
+                font-family: $hamilton-font;
+                line-height: 30px;
+                transform: rotate(10deg);
+            }
+
+            .title_top_part {
+                font-size: 60px;
+                font-family: $mns-bold-font;
+                color: $pink-color;
+            }
+
+            .title_bottom_part {
+                font-family: $mns-bold-font;
+                font-size: 100px;
+            }
+
+            .text_course {
+                padding-top: 80px;
+                line-height: 1.2;
+                font-size: 27px;
+                font-family: $mns-light-font;
+            }
+
+            .text_education {
+                padding-top: 120px;
+                line-height: 1.2;
+                font-size: 24px;
+                font-family: $mns-bold-font;
+            }
+
+            .small_text {
+                padding-top: 30px;
+                font-size: 18px;
+                line-height: 1.2;
+                font-family: $mns-light-font;
             }
         }
     }

@@ -126,21 +126,22 @@ export const LangPage = () => {
                             <p className={css.text_circle}>уровни</p>
                             <p className={css.levels_circle}>от А2 до С1</p>
                         </div>
-                        <img src={bg_book} alt="" className={css.bg_book}/>
+                        <img src={bg_book} alt="" className={css.bg_book} />
                     </div>
+                    
                     <div className={css.right_content}>
-                        <p className={css.rotated_text}>точно пригодится в жизни</p>
+                        <p className={css.rotated_text}>точно пригодится <br /> в жизни</p>
 
-                        <div>
+                        <div style={{ lineHeight: '0.65', paddingTop: '30px' }}>
                             <p className={css.title_top_part}>современный</p>
                             <p className={css.title_bottom_part}>учебник</p>
                         </div>
 
-                        <p>живой курс <br /> с реальными жизненными темами <br /> с мультиуровневым подходом</p>
+                        <p className={css.text_course}>живой курс <br /> с реальными жизненными темами <br /> с мультиуровневым подходом</p>
 
-                        <p>контекстное обучение <br /> по коммуникативной методике</p>
+                        <p className={css.text_education}>контекстное обучение <br /> по коммуникативной методике</p>
 
-                        <p>Каждый раздел - это ситуация из реальной жизни, в которую внедрены структурированная грамматика и актуальная лексика. И все это на основе культовых фильмов и интервью англоговорящих актеров.</p>
+                        <p className={css.small_text}>Каждый раздел - это ситуация из реальной жизни, в которую внедрены структурированная грамматика и актуальная лексика. И все это на основе культовых фильмов и интервью англоговорящих актеров.</p>
                     </div>
                 </div>
             </div>
