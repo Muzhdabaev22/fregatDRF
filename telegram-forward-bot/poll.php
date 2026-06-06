@@ -1,14 +1,5 @@
 <?php
 
-/**
- * Polling вместо webhook — для reg.ru, если из webhook.php нет доступа к api.telegram.org.
- *
- * 1) Откройте один раз:
- *    .../poll.php?key=ВАШ_СЕКРЕТ&setup=1
- * 2) Cron каждую минуту (панель reg.ru → Cron):
- *    curl -sS 'https://frigateschool.ru/telegram-forward-bot/poll.php?key=ВАШ_СЕКРЕТ'
- */
-
 declare(strict_types=1);
 
 require __DIR__ . '/bootstrap.php';
@@ -49,11 +40,23 @@ if (is_readable($stateFile)) {
 
 $setup = $isCli ? in_array('--setup', $argv, true) : (((string) ($_GET['setup'] ?? '')) === '1');
 
-if ($setup || empty($state['webhook_deleted'])) {
+
+$mustDeleteWebhook = $isCli || $setup || empty($state['webhook_deleted']);
+
+if ($mustDeleteWebhook) {
+    $info = frigat_tg_get('getWebhookInfo', $token);
+    $webhookUrl = is_array($info['result'] ?? null) ? (string) ($info['result']['url'] ?? '') : '';
+    echo '→ getWebhookInfo url=' . ($webhookUrl !== '' ? $webhookUrl : '(none)') . "\n";
+
     echo "→ deleteWebhook (polling)\n";
-    $deleted = frigat_tg_get('deleteWebhook', $token, ['drop_pending_updates' => 'true']);
+    $deleteQuery = $setup ? ['drop_pending_updates' => 'true'] : [];
+    $deleted = frigat_tg_get('deleteWebhook', $token, $deleteQuery);
     echo json_encode($deleted, JSON_UNESCAPED_UNICODE) . "\n";
     $state['webhook_deleted'] = !empty($deleted['ok']);
+
+    if ($webhookUrl !== '' && empty($deleted['ok'])) {
+        echo "WARN: webhook не снят — getUpdates не получит сообщения\n";
+    }
 }
 
 $offset = (int) ($state['offset'] ?? 0);
@@ -76,6 +79,8 @@ $items = $updates['result'] ?? [];
 if (!is_array($items)) {
     $items = [];
 }
+
+echo 'updates_received=' . count($items) . "\n";
 
 $processed = 0;
 foreach ($items as $item) {
