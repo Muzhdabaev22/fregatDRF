@@ -35,7 +35,7 @@ $token = $config['bot_token'];
 $forwardId = $config['forward_chat_id'];
 $stateFile = __DIR__ . '/poll-state.json';
 
-/** @var array{offset?: int, webhook_deleted?: bool, backlog_cleared?: bool} */
+/** @var array{offset?: int, webhook_deleted?: bool, backlog_cleared?: bool, last_update_id?: int} */
 $state = [];
 if (is_readable($stateFile)) {
     $raw = file_get_contents($stateFile);
@@ -78,6 +78,7 @@ if ($mustDeleteWebhook) {
 }
 
 $offset = (int) ($state['offset'] ?? 0);
+$lastUpdateId = (int) ($state['last_update_id'] ?? 0);
 
 // Одноразово сбросить старую очередь только при offset=0 (первый запуск / потерян кэш).
 if (empty($state['backlog_cleared']) && $offset === 0) {
@@ -103,19 +104,22 @@ if (empty($state['backlog_cleared']) && $offset === 0) {
             }
             $updateId = (int) ($item['update_id'] ?? 0);
             if ($updateId > 0) {
-                $offset = $updateId + 1;
+                $offset = max($offset, $updateId + 1);
+                $lastUpdateId = max($lastUpdateId, $updateId);
             }
         }
         echo 'drained_batch=' . count($batch) . " next_offset={$offset}\n";
     } while (true);
-    $state['offset'] = $offset;
+    $state['offset'] = max($offset, $lastUpdateId + 1);
+    $state['last_update_id'] = $lastUpdateId;
     $state['backlog_cleared'] = true;
     file_put_contents($stateFile, json_encode($state, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
     echo "→ backlog cleared offset={$offset}\n";
 }
 
 $offset = (int) ($state['offset'] ?? 0);
-echo "→ getUpdates offset={$offset}\n";
+$lastUpdateId = (int) ($state['last_update_id'] ?? 0);
+echo "→ getUpdates offset={$offset} last_update_id={$lastUpdateId}\n";
 
 $updates = frigat_tg_request('getUpdates', [
     'offset' => $offset,
@@ -138,13 +142,18 @@ if (!is_array($items)) {
 echo 'updates_received=' . count($items) . "\n";
 
 $processed = 0;
+$skippedDuplicate = 0;
 foreach ($items as $item) {
     if (!is_array($item)) {
         continue;
     }
     $updateId = (int) ($item['update_id'] ?? 0);
     if ($updateId > 0) {
-        $offset = $updateId + 1;
+        $offset = max($offset, $updateId + 1);
+    }
+    if ($updateId > 0 && $updateId <= $lastUpdateId) {
+        $skippedDuplicate++;
+        continue;
     }
     $message = $item['message'] ?? $item['edited_message'] ?? null;
     if (!is_array($message)) {
@@ -153,11 +162,15 @@ foreach ($items as $item) {
     frigat_tg_debug_log('poll update=' . $updateId . ' chat=' . ($message['chat']['id'] ?? '?'));
     frigat_tg_process_message($message, $token, $forwardId);
     $processed++;
+    if ($updateId > $lastUpdateId) {
+        $lastUpdateId = $updateId;
+    }
 }
 
-$state['offset'] = $offset;
+$state['offset'] = max($offset, $lastUpdateId + 1);
+$state['last_update_id'] = $lastUpdateId;
 $state['backlog_cleared'] = true;
 file_put_contents($stateFile, json_encode($state, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
-echo "processed={$processed} next_offset={$offset}\n";
+echo "processed={$processed} skipped_duplicate={$skippedDuplicate} next_offset={$state['offset']} last_update_id={$lastUpdateId}\n";
 echo "OK\n";
