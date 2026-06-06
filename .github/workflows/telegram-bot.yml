@@ -1,9 +1,15 @@
+# Опрос Telegram каждые 5 минут (GitHub Actions), если reg.ru не видит api.telegram.org.
+#
+# Secrets: TG_BOT_TOKEN, TG_FORWARD_CHAT_ID
+
 name: Telegram bot poll
 
 on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
+  repository_dispatch:
+    types: [telegram-poll]
 
 permissions:
   actions: write
