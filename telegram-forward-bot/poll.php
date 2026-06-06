@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Polling вместо webhook — для reg.ru, если из webhook.php нет доступа к api.telegram.org.
+
+ */
+
 declare(strict_types=1);
 
 require __DIR__ . '/bootstrap.php';
@@ -40,7 +45,7 @@ if (is_readable($stateFile)) {
 
 $setup = $isCli ? in_array('--setup', $argv, true) : (((string) ($_GET['setup'] ?? '')) === '1');
 
-
+// CLI (GitHub Actions): всегда снимаем webhook — иначе getUpdates пустой.
 $mustDeleteWebhook = $isCli || $setup || empty($state['webhook_deleted']);
 
 if ($mustDeleteWebhook) {
