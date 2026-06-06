@@ -35,7 +35,7 @@ $token = $config['bot_token'];
 $forwardId = $config['forward_chat_id'];
 $stateFile = __DIR__ . '/poll-state.json';
 
-/** @var array{offset?: int, webhook_deleted?: bool, process_after?: int} */
+/** @var array{offset?: int, webhook_deleted?: bool, backlog_cleared?: bool} */
 $state = [];
 if (is_readable($stateFile)) {
     $raw = file_get_contents($stateFile);
@@ -51,18 +51,12 @@ $setup = $isCli ? in_array('--setup', $argv, true) : (((string) ($_GET['setup'] 
 $fresh = $isCli && in_array('--fresh', $argv, true);
 
 if ($setup || $fresh) {
-    $state['process_after'] = time();
-    if ($setup) {
-        $state['offset'] = 0;
-        unset($state['webhook_deleted']);
-    }
-    echo '→ process_after=' . $state['process_after'] . " (only new messages)\n";
-} elseif (!isset($state['process_after'])) {
-    $state['process_after'] = time();
-    echo '→ process_after=' . $state['process_after'] . " (skip backlog)\n";
+    $state['offset'] = 0;
+    unset($state['webhook_deleted'], $state['backlog_cleared']);
+    echo "→ reset state (setup/fresh)\n";
 }
 
-$processAfter = (int) ($state['process_after'] ?? 0);
+unset($state['process_after']);
 
 // CLI (GitHub Actions): всегда снимаем webhook — иначе getUpdates пустой.
 $mustDeleteWebhook = $isCli || $setup || empty($state['webhook_deleted']);
@@ -81,6 +75,43 @@ if ($mustDeleteWebhook) {
     if ($webhookUrl !== '' && empty($deleted['ok'])) {
         echo "WARN: webhook не снят — getUpdates не получит сообщения\n";
     }
+}
+
+$offset = (int) ($state['offset'] ?? 0);
+
+// Одноразово сбросить старую очередь только при offset=0 (первый запуск / потерян кэш).
+if (empty($state['backlog_cleared']) && $offset === 0) {
+    echo "→ drain backlog (offset=0, no forward)\n";
+    do {
+        $drain = frigat_tg_request('getUpdates', [
+            'offset' => $offset,
+            'timeout' => 0,
+            'limit' => 100,
+            'allowed_updates' => ['message', 'edited_message'],
+        ], $token, 30);
+        if (empty($drain['ok'])) {
+            echo json_encode($drain, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n";
+            exit(1);
+        }
+        $batch = $drain['result'] ?? [];
+        if (!is_array($batch) || $batch === []) {
+            break;
+        }
+        foreach ($batch as $item) {
+            if (!is_array($item)) {
+                continue;
+            }
+            $updateId = (int) ($item['update_id'] ?? 0);
+            if ($updateId > 0) {
+                $offset = $updateId + 1;
+            }
+        }
+        echo 'drained_batch=' . count($batch) . " next_offset={$offset}\n";
+    } while (true);
+    $state['offset'] = $offset;
+    $state['backlog_cleared'] = true;
+    file_put_contents($stateFile, json_encode($state, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    echo "→ backlog cleared offset={$offset}\n";
 }
 
 $offset = (int) ($state['offset'] ?? 0);
@@ -104,10 +135,9 @@ if (!is_array($items)) {
     $items = [];
 }
 
-echo 'updates_received=' . count($items) . " process_after={$processAfter}\n";
+echo 'updates_received=' . count($items) . "\n";
 
 $processed = 0;
-$skippedBacklog = 0;
 foreach ($items as $item) {
     if (!is_array($item)) {
         continue;
@@ -120,19 +150,14 @@ foreach ($items as $item) {
     if (!is_array($message)) {
         continue;
     }
-    $msgDate = (int) ($message['edit_date'] ?? $message['date'] ?? 0);
-    if ($processAfter > 0 && $msgDate > 0 && $msgDate < $processAfter) {
-        $skippedBacklog++;
-        continue;
-    }
     frigat_tg_debug_log('poll update=' . $updateId . ' chat=' . ($message['chat']['id'] ?? '?'));
     frigat_tg_process_message($message, $token, $forwardId);
     $processed++;
 }
 
 $state['offset'] = $offset;
-$state['process_after'] = $processAfter;
+$state['backlog_cleared'] = true;
 file_put_contents($stateFile, json_encode($state, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
-echo "processed={$processed} skipped_backlog={$skippedBacklog} next_offset={$offset}\n";
+echo "processed={$processed} next_offset={$offset}\n";
 echo "OK\n";
