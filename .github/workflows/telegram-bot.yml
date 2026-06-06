@@ -1,3 +1,4 @@
+
 name: Telegram bot poll
 
 on:
@@ -7,6 +8,10 @@ on:
   repository_dispatch:
     types: [telegram-poll]
 
+concurrency:
+  group: telegram-bot-poll
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -15,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Poll Telegram
         env:
@@ -26,10 +33,49 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add telegram-forward-bot/poll-state.json
-          if git diff --staged --quiet; then
-            echo "poll-state unchanged"
+
+          STATE_FILE=telegram-forward-bot/poll-state.json
+          if [ ! -f "$STATE_FILE" ]; then
+            echo "No poll state file"
             exit 0
           fi
-          git commit -m "bot: update poll state [skip ci]"
-          git push
+
+          cp "$STATE_FILE" /tmp/poll-state.new.json
+
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+
+            php <<'PHP'
+          <?php
+          $stateFile = 'telegram-forward-bot/poll-state.json';
+          $new = json_decode((string) file_get_contents('/tmp/poll-state.new.json'), true) ?: [];
+          $remote = is_readable($stateFile)
+              ? (json_decode((string) file_get_contents($stateFile), true) ?: [])
+              : [];
+          $merged = [
+              'offset' => max((int) ($new['offset'] ?? 0), (int) ($remote['offset'] ?? 0)),
+              'last_update_id' => max((int) ($new['last_update_id'] ?? 0), (int) ($remote['last_update_id'] ?? 0)),
+              'webhook_deleted' => !empty($new['webhook_deleted']) || !empty($remote['webhook_deleted']),
+              'backlog_cleared' => !empty($new['backlog_cleared']) || !empty($remote['backlog_cleared']),
+          ];
+          file_put_contents($stateFile, json_encode($merged, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n");
+          PHP
+
+            git add "$STATE_FILE"
+            if git diff --staged --quiet; then
+              echo "poll-state unchanged after merge"
+              exit 0
+            fi
+
+            git commit -m "bot: update poll state [skip ci]"
+            if git push origin main; then
+              echo "poll-state saved"
+              exit 0
+            fi
+
+            git reset --hard HEAD~1
+            echo "Push failed, retry $attempt/5"
+          done
+
+          echo "Failed to push poll state after 5 attempts"
+          exit 1
