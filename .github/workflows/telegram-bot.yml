@@ -1,7 +1,3 @@
-# Опрос Telegram каждые 5 минут (GitHub Actions), если reg.ru не видит api.telegram.org.
-#
-# Secrets: TG_BOT_TOKEN, TG_FORWARD_CHAT_ID
-
 name: Telegram bot poll
 
 on:
@@ -12,8 +8,7 @@ on:
     types: [telegram-poll]
 
 permissions:
-  actions: write
-  contents: read
+  contents: write
 
 jobs:
   poll:
@@ -21,22 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: actions/cache/restore@v4
-        id: poll-cache
-        with:
-          path: telegram-forward-bot/poll-state.json
-          key: telegram-poll-state-v2
-          restore-keys: |
-            telegram-poll-state-v2
-
       - name: Poll Telegram
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TELEGRAM_FORWARD_CHAT_ID: ${{ secrets.TG_FORWARD_CHAT_ID }}
         run: php telegram-forward-bot/poll.php
 
-      - uses: actions/cache/save@v4
-        if: always()
-        with:
-          path: telegram-forward-bot/poll-state.json
-          key: telegram-poll-state-v2
+      - name: Save poll state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add telegram-forward-bot/poll-state.json
+          if git diff --staged --quiet; then
+            echo "poll-state unchanged"
+            exit 0
+          fi
+          git commit -m "bot: update poll state [skip ci]"
+          git push
