@@ -43,6 +43,7 @@ jobs:
           cp "$STATE_FILE" /tmp/poll-state.new.json
 
           for attempt in 1 2 3 4 5; do
+            git restore .
             git pull --rebase origin main
 
             php <<'PHP'
