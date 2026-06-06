@@ -1,0 +1,24 @@
+
+name: Telegram bot poll
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  poll:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/cache@v4
+        with:
+          path: telegram-forward-bot/poll-state.json
+          key: telegram-poll-state-v1
+
+      - name: Poll Telegram
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TELEGRAM_FORWARD_CHAT_ID: ${{ secrets.TG_FORWARD_CHAT_ID }}
+        run: php telegram-forward-bot/poll.php
